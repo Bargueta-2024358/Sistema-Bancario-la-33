@@ -4,11 +4,13 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import swaggerUi from 'swagger-ui-express';
 import { dbConnection } from './db.js';
 import { corsOptions } from './cors.configuration.js';
 import { helmetOptions } from './helmet.configuration.js';
 import { requestLimit } from './rateLimit.configuration.js';
 import { errorHandler } from '../middlewares/handle-errors.js';
+import swaggerSpec from '../swagger.js';
 import accountTypeRoutes from '../src/accountTypes/accountType.routes.js';
 import currencyRoutes from '../src/currencies/currency.routes.js';
 import exchangeRateRoutes from '../src/exchangeRates/exchangeRate.routes.js';
@@ -26,6 +28,7 @@ const middlewares = (app) => {
 };
 
 const routes = (app) => {
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
     app.use(`${BASE_PATH}/accountTypes`, accountTypeRoutes);
     app.use(`${BASE_PATH}/currencies`, currencyRoutes);
     app.use(`${BASE_PATH}/exchangeRates`, exchangeRateRoutes);
