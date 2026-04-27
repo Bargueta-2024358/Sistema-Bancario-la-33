@@ -45,8 +45,16 @@ var app = builder.Build();
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(c =>
+    {
+        c.RouteTemplate = "swagger/{documentName}/swagger.json";
+    });
+
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "AuthService API V1");
+        c.RoutePrefix = "swagger";
+    });
 }
 
 // Add Serilog request logging
