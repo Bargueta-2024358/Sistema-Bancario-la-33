@@ -6,29 +6,49 @@ import {
   updateExchangeRateStatus,
 } from './exchangeRate.service.js';
 
-// Obtener tasas de cambio
-export const getExchangeRates = async (req, res) => {
-  try {
-    const { page = 1, limit = 10, isActive = true } = req.query;
-    const { exchangeRates, pagination } = await fetchExchangeRates({
-      page,
-      limit,
-      isActive,
-    });
+// Obtener tasas
+export const getExchangeRates =
+  async (req, res) => {
+    try {
+      const {
+        page = 1,
+        limit = 10,
+        isActive,
+      } = req.query;
 
-    res.status(200).json({
-      success: true,
-      data: exchangeRates,
-      pagination,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al obtener las tasas de cambio',
-      error: error.message,
-    });
-  }
-};
+      const filters = {};
+
+      if (
+        isActive !== undefined
+      ) {
+        filters.isActive =
+          isActive === 'true';
+      }
+
+      const {
+        exchangeRates,
+        pagination,
+      } =
+        await fetchExchangeRates({
+          page,
+          limit,
+          ...filters,
+        });
+
+      res.status(200).json({
+        success: true,
+        data: exchangeRates,
+        pagination,
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message:
+          'Error al obtener tasas',
+        error: error.message,
+      });
+    }
+  };
 
 // Obtener tasa por ID
 export const getExchangeRateById = async (req, res) => {
@@ -107,35 +127,51 @@ export const updateExchangeRate = async (req, res) => {
   }
 };
 
-// Activar - Desactivar tasa
-export const changeExchangeRateStatus = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const isActive = req.url.includes('/activate');
-    const action = isActive ? 'activada' : 'desactivada';
+export const changeExchangeRateStatus =
+  async (req, res) => {
+    try {
+      const { id } = req.params;
 
-    const rate = await updateExchangeRateStatus({ id, isActive });
+      const isActive =
+        req.path.includes(
+          '/activate'
+        ) &&
+        !req.path.includes(
+          '/deactivate'
+        );
 
-    if (!rate) {
-      return res.status(404).json({
+      const action = isActive
+        ? 'activada'
+        : 'desactivada';
+
+      const rate =
+        await updateExchangeRateStatus({
+          id,
+          isActive,
+        });
+
+      if (!rate) {
+        return res.status(404).json({
+          success: false,
+          message:
+            'Tasa no encontrada',
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: `Tasa ${action} exitosamente`,
+        data: rate,
+      });
+    } catch (error) {
+      res.status(500).json({
         success: false,
-        message: 'Tasa de cambio no encontrada',
+        message:
+          'Error al cambiar estado',
+        error: error.message,
       });
     }
-
-    res.status(200).json({
-      success: true,
-      message: `Tasa de cambio ${action} exitosamente`,
-      data: rate,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al cambiar el estado de la tasa de cambio',
-      error: error.message,
-    });
-  }
-};
+  };
 
 // Convertir monto entre monedas
 export const convertCurrency = async (req, res) => {
