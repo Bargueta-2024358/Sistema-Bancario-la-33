@@ -6,14 +6,33 @@ import {
   updateAccountTypeStatus,
 } from './accountType.service.js';
 
-// Obtener todos los tipos de cuenta
-export const getAccountTypes = async (req, res) => {
+// Obtener todos
+export const getAccountTypes = async (
+  req,
+  res
+) => {
   try {
-    const { page = 1, limit = 10, isActive = true } = req.query;
-    const { accountTypes, pagination } = await fetchAccountTypes({
+    const {
+      page = 1,
+      limit = 10,
+      isActive,
+    } = req.query;
+
+    const filters = {};
+
+    // SOLO filtrar si viene query
+    if (isActive !== undefined) {
+      filters.isActive =
+        isActive === 'true';
+    }
+
+    const {
+      accountTypes,
+      pagination,
+    } = await fetchAccountTypes({
       page,
       limit,
-      isActive,
+      ...filters,
     });
 
     res.status(200).json({
@@ -24,115 +43,156 @@ export const getAccountTypes = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error al obtener los tipos de cuenta',
+      message:
+        'Error al obtener los tipos de cuenta',
       error: error.message,
     });
   }
 };
 
-// Obtener tipo de cuenta por ID
-export const getAccountTypeById = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const accountType = await fetchAccountTypeById(id);
+// Obtener por ID
+export const getAccountTypeById =
+  async (req, res) => {
+    try {
+      const { id } = req.params;
 
-    if (!accountType) {
-      return res.status(404).json({
+      const accountType =
+        await fetchAccountTypeById(id);
+
+      if (!accountType) {
+        return res.status(404).json({
+          success: false,
+          message:
+            'Tipo de cuenta no encontrado',
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        data: accountType,
+      });
+    } catch (error) {
+      res.status(500).json({
         success: false,
-        message: 'Tipo de cuenta no encontrado',
+        message:
+          'Error al obtener el tipo de cuenta',
+        error: error.message,
       });
     }
+  };
 
-    res.status(200).json({
-      success: true,
-      data: accountType,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al obtener el tipo de cuenta',
-      error: error.message,
-    });
-  }
-};
+// Crear
+export const createAccountType =
+  async (req, res) => {
+    try {
+      const accountType =
+        await createAccountTypeRecord({
+          accountTypeData: req.body,
+        });
 
-// Crear tipo de cuenta
-export const createAccountType = async (req, res) => {
-  try {
-    const accountType = await createAccountTypeRecord({
-      accountTypeData: req.body,
-    });
+      res.status(201).json({
+        success: true,
+        message:
+          'Tipo de cuenta creado exitosamente',
+        data: accountType,
+      });
+    } catch (error) {
+      if (error.code === 11000) {
+        return res.status(400).json({
+          success: false,
+          message:
+            'Ya existe un tipo de cuenta con ese nombre',
+        });
+      }
 
-    res.status(201).json({
-      success: true,
-      message: 'Tipo de cuenta creado exitosamente',
-      data: accountType,
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: 'Error al crear el tipo de cuenta',
-      error: error.message,
-    });
-  }
-};
-
-// Actualizar tipo de cuenta
-export const updateAccountType = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const accountType = await updateAccountTypeRecord({
-      id,
-      updateData: req.body,
-    });
-
-    if (!accountType) {
-      return res.status(404).json({
+      res.status(400).json({
         success: false,
-        message: 'Tipo de cuenta no encontrado',
+        message:
+          'Error al crear el tipo de cuenta',
+        error: error.message,
       });
     }
+  };
 
-    res.status(200).json({
-      success: true,
-      message: 'Tipo de cuenta actualizado exitosamente',
-      data: accountType,
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      message: 'Error al actualizar el tipo de cuenta',
-      error: error.message,
-    });
-  }
-};
+// Actualizar
+export const updateAccountType =
+  async (req, res) => {
+    try {
+      const { id } = req.params;
 
-// Activar - Desactivar
-export const changeAccountTypeStatus = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const isActive = req.url.includes('/activate');
-    const action = isActive ? 'activado' : 'desactivado';
+      const accountType =
+        await updateAccountTypeRecord({
+          id,
+          updateData: req.body,
+        });
 
-    const accountType = await updateAccountTypeStatus({ id, isActive });
+      if (!accountType) {
+        return res.status(404).json({
+          success: false,
+          message:
+            'Tipo de cuenta no encontrado',
+        });
+      }
 
-    if (!accountType) {
-      return res.status(404).json({
+      res.status(200).json({
+        success: true,
+        message:
+          'Tipo de cuenta actualizado exitosamente',
+        data: accountType,
+      });
+    } catch (error) {
+      res.status(400).json({
         success: false,
-        message: 'Tipo de cuenta no encontrado',
+        message:
+          'Error al actualizar el tipo de cuenta',
+        error: error.message,
       });
     }
+  };
 
-    res.status(200).json({
-      success: true,
-      message: `Tipo de cuenta ${action} exitosamente`,
-      data: accountType,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Error al cambiar el estado del tipo de cuenta',
-      error: error.message,
-    });
-  }
-};
+// Activar / Desactivar
+export const changeAccountTypeStatus =
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+
+      const isActive =
+        req.path.includes(
+          '/activate'
+        ) &&
+        !req.path.includes(
+          '/deactivate'
+        );
+
+      const action = isActive
+        ? 'activado'
+        : 'desactivado';
+
+      const accountType =
+        await updateAccountTypeStatus({
+          id,
+          isActive,
+        });
+
+      if (!accountType) {
+        return res.status(404).json({
+          success: false,
+          message:
+            'Tipo de cuenta no encontrado',
+        });
+      }
+
+      res.status(200).json({
+        success: true,
+        message: `Tipo de cuenta ${action} exitosamente`,
+        data: accountType,
+      });
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message:
+          'Error al cambiar el estado',
+        error: error.message,
+      });
+    }
+  };

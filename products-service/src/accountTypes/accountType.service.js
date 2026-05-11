@@ -1,82 +1,115 @@
 import AccountType from './accountType.model.js';
 import eventBus from '../events/eventBus.js';
 
-export const fetchAccountTypes = async ({
-  page = 1,
-  limit = 10,
-  isActive = true,
-}) => {
-  const filter = { isActive };
-  const pageNumber = parseInt(page);
-  const limitNumber = parseInt(limit);
+export const fetchAccountTypes =
+  async ({
+    page = 1,
+    limit = 10,
+    isActive,
+  }) => {
+    const pageNumber =
+      parseInt(page);
 
-  const accountTypes = await AccountType.find(filter)
-    .limit(limitNumber)
-    .skip((pageNumber - 1) * limitNumber)
-    .sort({ createdAt: -1 });
+    const limitNumber =
+      parseInt(limit);
 
-  const total = await AccountType.countDocuments(filter);
+    const filters = {};
 
-  return {
-    accountTypes,
-    pagination: {
-      currentPage: pageNumber,
-      totalPages: Math.ceil(total / limitNumber),
-      totalRecords: total,
-      limit: limitNumber,
-    },
+    // SOLO filtrar si viene definido
+    if (isActive !== undefined) {
+      filters.isActive =
+        isActive;
+    }
+
+    const accountTypes =
+      await AccountType.find(filters)
+        .limit(limitNumber)
+        .skip(
+          (pageNumber - 1) *
+            limitNumber
+        )
+        .sort({ createdAt: -1 });
+
+    const total =
+      await AccountType.countDocuments(
+        filters
+      );
+
+    return {
+      accountTypes,
+
+      pagination: {
+        currentPage:
+          pageNumber,
+
+        totalPages:
+          Math.ceil(
+            total / limitNumber
+          ),
+
+        totalRecords: total,
+
+        limit: limitNumber,
+      },
+    };
   };
-};
 
-export const fetchAccountTypeById = async (id) => {
-  return AccountType.findById(id);
-};
+export const fetchAccountTypeById =
+  async (id) => {
+    return AccountType.findById(id);
+  };
 
-export const createAccountTypeRecord = async ({ accountTypeData }) => {
-  const accountType = new AccountType(accountTypeData);
-  await accountType.save();
+export const createAccountTypeRecord =
+  async ({ accountTypeData }) => {
+    const accountType =
+      new AccountType(
+        accountTypeData
+      );
 
-  eventBus.emit('accountType.created', {
-    id: accountType._id,
-    name: accountType.name,
-    interestRate: accountType.interestRate,
-    createdAt: accountType.createdAt,
-  });
+    await accountType.save();
 
-  return accountType;
-};
+    eventBus.emit(
+      'accountType.created',
+      {
+        id: accountType._id,
+        name: accountType.name,
+        createdAt:
+          accountType.createdAt,
+      }
+    );
 
-export const updateAccountTypeRecord = async ({ id, updateData }) => {
-  const accountType = await AccountType.findByIdAndUpdate(id, updateData, {
-    new: true,
-    runValidators: true,
-  });
+    return accountType;
+  };
 
-  if (accountType) {
-    eventBus.emit('accountType.updated', {
-      id: accountType._id,
-      name: accountType.name,
-      updatedAt: new Date(),
-    });
-  }
-
-  return accountType;
-};
-
-export const updateAccountTypeStatus = async ({ id, isActive }) => {
-  const accountType = await AccountType.findByIdAndUpdate(
+export const updateAccountTypeRecord =
+  async ({
     id,
-    { isActive },
-    { new: true }
-  );
+    updateData,
+  }) => {
+    const accountType =
+      await AccountType.findByIdAndUpdate(
+        id,
+        updateData,
+        {
+          new: true,
+          runValidators: true,
+        }
+      );
 
-  if (accountType && !isActive) {
-    eventBus.emit('accountType.deactivated', {
-      id: accountType._id,
-      name: accountType.name,
-      deactivatedAt: new Date(),
-    });
-  }
+    return accountType;
+  };
 
-  return accountType;
-};
+export const updateAccountTypeStatus =
+  async ({
+    id,
+    isActive,
+  }) => {
+    const accountType =
+      await AccountType.findByIdAndUpdate(
+        id,
+        { isActive },
+        { new: true }
+      );
+
+    return accountType;
+  };

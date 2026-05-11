@@ -1,30 +1,67 @@
 import ExchangeRate from './exchangeRate.model.js';
 import eventBus from '../events/eventBus.js';
 
-export const fetchExchangeRates = async ({ page = 1, limit = 10, isActive = true }) => {
-  const pageNumber = parseInt(page);
-  const limitNumber = parseInt(limit);
-  const filter = { isActive };
+export const fetchExchangeRates =
+  async ({
+    page = 1,
+    limit = 10,
+    isActive,
+  }) => {
+    const pageNumber =
+      parseInt(page);
 
-  const rates = await ExchangeRate.find(filter)
-    .limit(limitNumber)
-    .skip((pageNumber - 1) * limitNumber)
-    .sort({ createdAt: -1 })
-    .populate('fromCurrency', 'code name symbol')
-    .populate('toCurrency', 'code name symbol');
+    const limitNumber =
+      parseInt(limit);
 
-  const total = await ExchangeRate.countDocuments(filter);
+    const filters = {};
 
-  return {
-    exchangeRates: rates,
-    pagination: {
-      currentPage: pageNumber,
-      totalPages: Math.ceil(total / limitNumber),
-      totalRecords: total,
-      limit: limitNumber,
-    },
+    if (isActive !== undefined) {
+      filters.isActive =
+        isActive;
+    }
+
+    const rates =
+      await ExchangeRate.find(
+        filters
+      )
+        .limit(limitNumber)
+        .skip(
+          (pageNumber - 1) *
+            limitNumber
+        )
+        .sort({ createdAt: -1 })
+        .populate(
+          'fromCurrency',
+          'code name symbol'
+        )
+        .populate(
+          'toCurrency',
+          'code name symbol'
+        );
+
+    const total =
+      await ExchangeRate.countDocuments(
+        filters
+      );
+
+    return {
+      exchangeRates: rates,
+
+      pagination: {
+        currentPage:
+          pageNumber,
+
+        totalPages:
+          Math.ceil(
+            total / limitNumber
+          ),
+
+        totalRecords: total,
+
+        limit: limitNumber,
+      },
+    };
   };
-};
 
 export const fetchExchangeRateById = async (id) => {
   return ExchangeRate.findById(id);
