@@ -14,17 +14,11 @@ export const useAuthStore = create(
       error: null,
       isLoadingAuth: true,
       isAuthenticated: false,
-
+      //Verificar si hay sesión activa pero no es Admin, se limpia la sesión
       checkAuth: () => {
         const token = get().token;
         const role = get().user?.role;
         const isAdmin = role === 'ADMIN_ROLE';
-
-        set({
-          isLoadingAuth: false,
-          isAuthenticated: Boolean(token) && isAdmin,
-        });
-
         if (token && !isAdmin) {
           set({
             user: null,
@@ -32,9 +26,15 @@ export const useAuthStore = create(
             refreshToken: null,
             expiresAt: null,
             isAuthenticated: false,
-            error: 'No tienes permisos para acceder a esta aplicación',
+            isLoadingAuth: false,
+            error: 'Notienes permisos para acceder a esta aplicación',
           });
+          return;
         }
+        set({
+          isLoadingAuth: false,
+          isAuthenticated: Boolean(token) && isAdmin,
+        });
       },
 
       logout: () => {
@@ -50,16 +50,11 @@ export const useAuthStore = create(
       login: async ({ emailOrUsername, password }) => {
         try {
           set({ loading: true, error: null });
-
           const { data } = await loginRequest({ emailOrUsername, password });
-
-          console.log('LOGIN DATA:', data);
-
           const role = data?.userDetails?.role;
-
+          console.log(role);
           if (role !== 'ADMIN_ROLE') {
             const message = 'No tienes permisos para acceder a esta aplicación';
-
             set({
               user: null,
               token: null,
@@ -68,33 +63,23 @@ export const useAuthStore = create(
               isAuthenticated: false,
               isLoadingAuth: false,
               error: message,
-              loading: false,
             });
-
             showError(message);
             return { success: false, error: message };
           }
 
-          // ✅ AQUÍ ESTÁ EL FIX REAL
           set({
             user: data.userDetails,
-            token: data.token,           // 🔥 CAMBIADO (antes accessToken)
-            refreshToken: null,          // no viene en tu API
-            expiresAt: data.expiresAt,   // 🔥 CAMBIADO (antes expiresIn)
+            token: data.accessToken,
+            refreshToken: data.refreshToken,
+            expiresAt: data.expiresIn,
             isAuthenticated: true,
             loading: false,
-            error: null,
           });
-
           return { success: true };
         } catch (err) {
           const message = err.response?.data?.message || 'Error al iniciar sesión';
-
-          set({
-            error: message,
-            loading: false,
-          });
-
+          set({ error: message, loading: false });
           return { success: false, error: message };
         }
       },
@@ -102,11 +87,8 @@ export const useAuthStore = create(
       register: async (formData) => {
         try {
           set({ loading: true, error: null });
-
           const { data } = await registerRequest(formData);
-
           set({ loading: false });
-
           return {
             success: true,
             emailVerificationRequired: data?.emailVerificationRequired,
@@ -114,12 +96,7 @@ export const useAuthStore = create(
           };
         } catch (err) {
           const message = err.response?.data?.message || 'Error al registrar usuario';
-
-          set({
-            error: message,
-            loading: false,
-          });
-
+          set({ error: message, loading: false });
           return { success: false, error: message };
         }
       },

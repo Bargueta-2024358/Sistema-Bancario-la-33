@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/authStore.js';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-export const LoginForm = ({ onForgot }) => {
+export const LoginForm = ({ onForgot, onRegister }) => {
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
   const loading = useAuthStore((state) => state.loading);
@@ -70,7 +70,13 @@ export const LoginForm = ({ onForgot }) => {
       {error && <p className='text-red-600 text-sm text-center'>{error}</p>}
 
       <div className='flex items-center justify-between text-sm text-[#5f5342]'>
-        <span className='text-[#5f5342]'>Ingresa tus credenciales para acceder de forma segura.</span>
+        <button
+          type='button'
+          onClick={onRegister}
+          className='text-[#daa520] font-medium hover:underline'
+        >
+          Crea tu cuenta
+        </button>
         <button
           type='button'
           onClick={onForgot}
