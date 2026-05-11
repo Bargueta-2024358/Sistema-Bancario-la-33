@@ -1,14 +1,21 @@
 import { useState } from 'react';
 import { LoginForm } from '../components/LoginForm.jsx';
 import { ForgotPassword } from '../components/ForgotPassword.jsx';
+import { RegisterForm } from '../components/RegisterForm.jsx';
 import chitaLogo from '../../../assets/img/logo chita banco.png';
 
 export const AuthPage = () => {
-  const [isForgot, setIsForgot] = useState(false);
+  const [view, setView] = useState('login'); // 'login', 'forgot', 'register'
+
+  const getTitle = () => {
+    if (view === 'forgot') return 'Recuperar Contraseña';
+    if (view === 'register') return 'Crear Cuenta';
+    return 'Iniciar sesión';
+  };
 
   return (
     <div className='min-h-screen bg-[#e7dbcb] flex items-center justify-center px-4 py-10'>
-      <div className='w-full max-w-lg rounded-[28px] border border-[#e7dbcb] bg-[#e7dbcb] px-10 py-10 shadow-[0_30px_70px_rgba(0,0,0,0.12)]'>
+      <div className='w-full max-w-[550px] min-h-[300px] rounded-[28px] border border-[#e7dbcb] bg-[#e7dbcb] px-8 py-8 shadow-[0_30px_70px_rgba(0,0,0,0.12)]'>
         <div className='mb-8 flex items-center justify-center gap-6'>
           <img src={chitaLogo} alt='Banco La 33' className='h-25 w-auto' />
           <div className='text-center'>
@@ -17,16 +24,27 @@ export const AuthPage = () => {
           </div>
         </div>
 
-        <h1 className='mb-0 text-3xl font-semibold text-[#3f3528]'>Iniciar sesión</h1>
+        <h1 className='mb-0 text-3xl font-semibold text-[#3f3528]'>{getTitle()}</h1>
 
         <div className='mt-8'>
-          {isForgot ? (
-            <ForgotPassword onSwitch={() => setIsForgot(false)} />
-          ) : (
-            <LoginForm onForgot={() => setIsForgot(true)} />
+          {view === 'login' && (
+            <LoginForm 
+              onForgot={() => setView('forgot')} 
+              onRegister={() => setView('register')}
+            />
+          )}
+          {view === 'forgot' && (
+            <ForgotPassword onSwitch={() => setView('login')} />
+          )}
+          {view === 'register' && (
+            <RegisterForm 
+              onSwitch={() => setView('login')}
+              onSuccess={() => setView('login')}
+            />
           )}
         </div>
       </div>
     </div>
   );
 };
+

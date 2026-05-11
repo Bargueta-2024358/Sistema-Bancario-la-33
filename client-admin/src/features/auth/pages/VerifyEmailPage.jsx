@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useVerifyEmail } from '../hooks/useVerifyEmail';
-import logo from '../../../assets/img/logo chita banco.png';
+import chitaLogo from '../../../assets/img/logo chita banco.png';
 
 export const VerifyEmailPage = () => {
   const location = useLocation();
@@ -19,10 +19,10 @@ export const VerifyEmailPage = () => {
   const displayMessage = status === 'loading' ? 'Verificando correo, por favor espera...' : message;
 
   return (
-    <div className='flex flex-col justify-center items-center h-screen bg-gray-100 px-4'>
-      <img src={logo} alt='Kinal Sports' className='w-28 h-28 object-contain mb-4' />
+    <div className='flex flex-col justify-center items-center h-screen bg-[#e7dbcb] px-4'>
+      <img src={chitaLogo} alt='Banco La 33' className='w-32 h-32 object-contain mb-6' />
 
-      <p className='text-lg font-semibold text-gray-700 text-center max-w-lg' aria-live='polite'>
+      <p className='text-lg font-semibold text-[#3f3528] text-center max-w-lg' aria-live='polite'>
         {displayMessage}
       </p>
     </div>
