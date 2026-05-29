@@ -1,0 +1,2 @@
+-- Ejecutar manualmente si la BD no existe:
+-- CREATE DATABASE banco_33_reports;
