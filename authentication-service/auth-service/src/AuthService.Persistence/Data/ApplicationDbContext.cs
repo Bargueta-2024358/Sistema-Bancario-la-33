@@ -114,6 +114,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                     .HasMaxLength(16);
                 entity.Property(e => e.ProfilePicture).HasDefaultValue("");
                 entity.Property(e => e.Phone).HasMaxLength(8);
+                entity.Property(e => e.Address).HasMaxLength(200).HasDefaultValue("");
+                entity.Property(e => e.Job).HasMaxLength(100).HasDefaultValue("");
+                entity.Property(e => e.Dpi).HasMaxLength(13).HasDefaultValue("");
+                entity.Property(e => e.Income).HasColumnType("decimal(18,2)").HasDefaultValue(0m);
             });
 
             // Configuración de Role

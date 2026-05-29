@@ -1,0 +1,355 @@
+[2026-05-29 00:19:22 INF] HTTP OPTIONS /api/v1/Auth/profile responded 204 in 20.1343 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL3:00000001","ConnectionId":"0HNLT8D1VBNL3"}
+[2026-05-29 00:19:22 INF] HTTP OPTIONS /api/v1/Auth/profile responded 204 in 20.1557 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL2:00000001","ConnectionId":"0HNLT8D1VBNL2"}
+[2026-05-29 00:19:22 INF] HTTP GET /api/v1/Auth/profile responded 200 in 160.0747 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL3:00000002","ConnectionId":"0HNLT8D1VBNL3"}
+[2026-05-29 00:19:22 INF] HTTP GET /api/v1/Auth/profile responded 200 in 72.0228 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL2:00000002","ConnectionId":"0HNLT8D1VBNL2"}
+[2026-05-29 00:25:08 INF] HTTP OPTIONS /api/v1/Auth/login responded 204 in 0.2141 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL4:00000001","ConnectionId":"0HNLT8D1VBNL4"}
+[2026-05-29 00:25:08 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"04a42874-1694-4a08-ad42-5c4518d9edbf","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLT8D1VBNL4:00000002","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLT8D1VBNL4"}
+[2026-05-29 00:25:08 INF] HTTP POST /api/v1/Auth/login responded 200 in 771.4738 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL4:00000002","ConnectionId":"0HNLT8D1VBNL4"}
+[2026-05-29 00:25:08 INF] HTTP OPTIONS /api/v1/Users responded 204 in 23.9010 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL4:00000003","ConnectionId":"0HNLT8D1VBNL4"}
+[2026-05-29 00:25:08 INF] HTTP OPTIONS /api/v1/Users responded 204 in 0.4076 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL5:00000001","ConnectionId":"0HNLT8D1VBNL5"}
+[2026-05-29 00:25:09 INF] HTTP GET /api/v1/Users responded 200 in 25.9917 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL4:00000004","ConnectionId":"0HNLT8D1VBNL4"}
+[2026-05-29 00:25:09 INF] HTTP GET /api/v1/Users responded 200 in 11.0386 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL5:00000002","ConnectionId":"0HNLT8D1VBNL5"}
+[2026-05-29 00:25:25 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"04a42874-1694-4a08-ad42-5c4518d9edbf","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLT8D1VBNL5:00000003","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLT8D1VBNL5"}
+[2026-05-29 00:25:25 INF] HTTP POST /api/v1/Auth/login responded 200 in 443.6214 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLT8D1VBNL5:00000003","ConnectionId":"0HNLT8D1VBNL5"}
+[2026-05-29 02:05:05 INF] Verificando conexión a la base de datos... {"SourceContext":"Program"}
+[2026-05-29 02:05:05 ERR] Failed executing DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT migration_id, product_version
+FROM "__EFMigrationsHistory"
+ORDER BY migration_id; {"EventId":{"Id":20102,"Name":"Microsoft.EntityFrameworkCore.Database.Command.CommandError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Command"}
+[2026-05-29 02:05:06 INF] Base de datos lista. Ejecutando datos semilla... {"SourceContext":"Program"}
+[2026-05-29 02:05:06 INF] Inicialización de base de datos completada exitosamente {"SourceContext":"Program"}
+[2026-05-29 02:05:06 ERR] An exception occurred while processing the key element '<key id="5d596c0b-03a0-44fa-8a59-2d4ec7ad95de" version="1" />'. {"EventId":{"Id":24,"Name":"ExceptionOccurredWhileProcessingTheKeyElement"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+[2026-05-29 02:05:06 WRN] Key {5d596c0b-03a0-44fa-8a59-2d4ec7ad95de} is ineligible to be the default key because its CreateEncryptor method failed. {"EventId":{"Id":12,"Name":"KeyIsIneligibleToBeTheDefaultKeyBecauseItsMethodFailed"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory.CreateEncryptorInstance(IKey key)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyBase.CreateEncryptor()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver.CanCreateAuthenticatedEncryptor(IKey key)
+[2026-05-29 02:05:06 ERR] An exception occurred while processing the key element '<key id="d4e90d0f-c205-4856-aba5-3c7d2c84e630" version="1" />'. {"EventId":{"Id":24,"Name":"ExceptionOccurredWhileProcessingTheKeyElement"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at InvokeStub_DpapiXmlDecryptor..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+[2026-05-29 02:05:06 WRN] Key {d4e90d0f-c205-4856-aba5-3c7d2c84e630} is ineligible to be the default key because its CreateEncryptor method failed. {"EventId":{"Id":12,"Name":"KeyIsIneligibleToBeTheDefaultKeyBecauseItsMethodFailed"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at InvokeStub_DpapiXmlDecryptor..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory.CreateEncryptorInstance(IKey key)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyBase.CreateEncryptor()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver.CanCreateAuthenticatedEncryptor(IKey key)
+[2026-05-29 02:05:06 ERR] An exception occurred while processing the key element '<key id="085fc58b-eefa-44a6-a1fb-0eef5b8f2399" version="1" />'. {"EventId":{"Id":24,"Name":"ExceptionOccurredWhileProcessingTheKeyElement"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at InvokeStub_DpapiXmlDecryptor..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+[2026-05-29 02:05:06 WRN] Key {085fc58b-eefa-44a6-a1fb-0eef5b8f2399} is ineligible to be the default key because its CreateEncryptor method failed. {"EventId":{"Id":12,"Name":"KeyIsIneligibleToBeTheDefaultKeyBecauseItsMethodFailed"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at InvokeStub_DpapiXmlDecryptor..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+   at System.Lazy`1.ExecutionAndPublication(LazyHelper executionAndPublication, Boolean useDefaultConstructor)
+   at System.Lazy`1.CreateValue()
+   at Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory.CreateEncryptorInstance(IKey key)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyBase.CreateEncryptor()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver.CanCreateAuthenticatedEncryptor(IKey key)
+[2026-05-29 02:05:06 WRN] Key {085fc58b-eefa-44a6-a1fb-0eef5b8f2399} is ineligible to be the default key because its CreateEncryptor method failed. {"EventId":{"Id":12,"Name":"KeyIsIneligibleToBeTheDefaultKeyBecauseItsMethodFailed"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at InvokeStub_DpapiXmlDecryptor..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory.CreateEncryptorInstance(IKey key)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyBase.CreateEncryptor()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver.CanCreateAuthenticatedEncryptor(IKey key)
+[2026-05-29 02:05:06 WRN] Key {d4e90d0f-c205-4856-aba5-3c7d2c84e630} is ineligible to be the default key because its CreateEncryptor method failed. {"EventId":{"Id":12,"Name":"KeyIsIneligibleToBeTheDefaultKeyBecauseItsMethodFailed"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at InvokeStub_DpapiXmlDecryptor..ctor(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory.CreateEncryptorInstance(IKey key)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyBase.CreateEncryptor()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver.CanCreateAuthenticatedEncryptor(IKey key)
+[2026-05-29 02:05:06 WRN] Key {5d596c0b-03a0-44fa-8a59-2d4ec7ad95de} is ineligible to be the default key because its CreateEncryptor method failed. {"EventId":{"Id":12,"Name":"KeyIsIneligibleToBeTheDefaultKeyBecauseItsMethodFailed"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver"}
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.PlatformNotSupportedException: This operation requires Windows 7 / Windows Server 2008 R2 or later.
+   at Microsoft.AspNetCore.Cryptography.CryptoUtil.AssertPlatformIsWindows()
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor..ctor(IServiceProvider services)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName, Boolean& forwarded)
+   at Microsoft.AspNetCore.DataProtection.TypeForwardingActivator.CreateInstance(Type expectedBaseType, String originalTypeName)
+   at Microsoft.AspNetCore.DataProtection.ActivatorExtensions.CreateInstance[T](IActivator activator, String implementationTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.CreateDecryptor(IActivator activator, String decryptorTypeName)
+   at Microsoft.AspNetCore.DataProtection.XmlEncryption.XmlEncryptionExtensions.DecryptElement(XElement element, IActivator activator)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager.Microsoft.AspNetCore.DataProtection.KeyManagement.Internal.IInternalXmlKeyManager.DeserializeDescriptorFromKeyElement(XElement keyElement)
+   at System.Lazy`1.ViaFactory(LazyThreadSafetyMode mode)
+--- End of stack trace from previous location ---
+   at System.Lazy`1.CreateValue()
+   at Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngGcmAuthenticatedEncryptorFactory.CreateEncryptorInstance(IKey key)
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.KeyBase.CreateEncryptor()
+   at Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver.CanCreateAuthenticatedEncryptor(IKey key)
+[2026-05-29 02:05:06 WRN] No XML encryptor configured. Key {6b94516d-0e03-419f-ba6e-adcee0c8b299} may be persisted to storage in unencrypted form. {"EventId":{"Id":35,"Name":"NoXMLEncryptorConfiguredKeyMayBePersistedToStorageInUnencryptedForm"},"SourceContext":"Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager"}
+[2026-05-29 02:05:06 INF] API de AuthService está ejecutándose en http://localhost:5210. Endpoint de salud: http://localhost:5210/health {"SourceContext":"Program"}
+[2026-05-29 02:10:12 INF] Verificando conexión a la base de datos... {"SourceContext":"Program"}
+[2026-05-29 02:10:12 INF] Base de datos lista. Ejecutando datos semilla... {"SourceContext":"Program"}
+[2026-05-29 02:10:12 INF] Inicialización de base de datos completada exitosamente {"SourceContext":"Program"}
+[2026-05-29 02:10:12 INF] API de AuthService está ejecutándose en http://localhost:5210. Endpoint de salud: http://localhost:5210/health {"SourceContext":"Program"}
+[2026-05-29 02:26:58 INF] Verificando conexión a la base de datos... {"SourceContext":"Program"}
+[2026-05-29 02:26:59 INF] Base de datos lista. Ejecutando datos semilla... {"SourceContext":"Program"}
+[2026-05-29 02:26:59 INF] Inicialización de base de datos completada exitosamente {"SourceContext":"Program"}
+[2026-05-29 02:26:59 INF] API de AuthService está ejecutándose en http://localhost:5210. Endpoint de salud: http://localhost:5210/health {"SourceContext":"Program"}
+[2026-05-29 03:32:35 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNLTCKRMBC91:00000001","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTCKRMBC91"}
+[2026-05-29 03:32:35 INF] HTTP OPTIONS /api/v1/Auth/login responded 204 in 8.2711 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC91:00000001","ConnectionId":"0HNLTCKRMBC91"}
+[2026-05-29 03:32:35 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"f857bee9-8e44-44f4-8cf2-125cc7aa1864","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLTCKRMBC91:00000002","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTCKRMBC91"}
+[2026-05-29 03:32:35 INF] HTTP POST /api/v1/Auth/login responded 200 in 403.1949 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC91:00000002","ConnectionId":"0HNLTCKRMBC91"}
+[2026-05-29 03:32:35 INF] HTTP OPTIONS /api/v1/Users responded 204 in 0.4653 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC91:00000003","ConnectionId":"0HNLTCKRMBC91"}
+[2026-05-29 03:32:35 INF] HTTP GET /api/v1/Users responded 200 in 84.6496 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC91:00000004","ConnectionId":"0HNLTCKRMBC91"}
+[2026-05-29 03:32:41 INF] HTTP GET /api/v1/Users responded 200 in 15.4940 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC91:00000005","ConnectionId":"0HNLTCKRMBC91"}
+[2026-05-29 03:32:43 INF] HTTP GET /api/v1/Users responded 200 in 18.3971 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC91:00000006","ConnectionId":"0HNLTCKRMBC91"}
+[2026-05-29 03:33:29 INF] HTTP GET /api/v1/Users responded 200 in 7.3308 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC92:00000001","ConnectionId":"0HNLTCKRMBC92"}
+[2026-05-29 03:33:30 INF] HTTP GET /api/v1/Users responded 200 in 8.5300 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC92:00000002","ConnectionId":"0HNLTCKRMBC92"}
+[2026-05-29 03:33:33 INF] HTTP GET /api/v1/Users responded 200 in 10.2971 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC92:00000003","ConnectionId":"0HNLTCKRMBC92"}
+[2026-05-29 03:33:41 INF] HTTP GET /api/v1/Users responded 200 in 10.8353 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC92:00000004","ConnectionId":"0HNLTCKRMBC92"}
+[2026-05-29 03:34:49 INF] User DDD registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"ddcf0e5b-3b34-429e-b9e1-03b4e748d811","ActionName":"AuthService.Api.Controllers.UsersController.Create (AuthService.Api)","RequestId":"0HNLTCKRMBC93:00000001","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTCKRMBC93"}
+[2026-05-29 03:34:49 INF] HTTP POST /api/v1/Users responded 201 in 2168.7340 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC93:00000001","ConnectionId":"0HNLTCKRMBC93"}
+[2026-05-29 03:34:49 INF] HTTP GET /api/v1/Users responded 200 in 2.6793 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC93:00000002","ConnectionId":"0HNLTCKRMBC93"}
+[2026-05-29 03:34:55 INF] HTTP GET /api/v1/Users responded 200 in 6.6676 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC93:00000003","ConnectionId":"0HNLTCKRMBC93"}
+[2026-05-29 03:35:12 INF] HTTP GET /api/v1/Users responded 200 in 8.6356 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC93:00000004","ConnectionId":"0HNLTCKRMBC93"}
+[2026-05-29 03:35:20 INF] HTTP GET /api/v1/Users responded 200 in 10.5927 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC93:00000005","ConnectionId":"0HNLTCKRMBC93"}
+[2026-05-29 03:35:22 INF] HTTP GET /api/v1/Users responded 200 in 13.9790 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC93:00000006","ConnectionId":"0HNLTCKRMBC93"}
+[2026-05-29 03:35:54 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"f857bee9-8e44-44f4-8cf2-125cc7aa1864","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLTCKRMBC94:00000001","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTCKRMBC94"}
+[2026-05-29 03:35:54 INF] HTTP POST /api/v1/Auth/login responded 200 in 67.6855 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC94:00000001","ConnectionId":"0HNLTCKRMBC94"}
+[2026-05-29 03:36:19 INF] HTTP OPTIONS /api/v1/Auth/profile responded 204 in 0.6185 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC94:00000002","ConnectionId":"0HNLTCKRMBC94"}
+[2026-05-29 03:36:19 INF] HTTP GET /api/v1/Auth/profile responded 200 in 15.8926 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTCKRMBC94:00000003","ConnectionId":"0HNLTCKRMBC94"}
+[2026-05-29 10:26:54 INF] Verificando conexión a la base de datos... {"SourceContext":"Program"}
+[2026-05-29 10:26:55 ERR] An error occurred using the connection to database 'banco_33_users' on server 'tcp://localhost:5436'. {"EventId":{"Id":20004,"Name":"Microsoft.EntityFrameworkCore.Database.Connection.ConnectionError"},"SourceContext":"Microsoft.EntityFrameworkCore.Database.Connection"}
+[2026-05-29 10:26:55 INF] Base de datos lista. Ejecutando datos semilla... {"SourceContext":"Program"}
+[2026-05-29 10:26:55 INF] Inicialización de base de datos completada exitosamente {"SourceContext":"Program"}
+[2026-05-29 10:26:56 INF] API de AuthService está ejecutándose en http://localhost:5210. Endpoint de salud: http://localhost:5210/health {"SourceContext":"Program"}
+[2026-05-29 10:39:36 WRN] Failed to determine the https port for redirect. {"EventId":{"Id":3,"Name":"FailedToDeterminePort"},"SourceContext":"Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware","RequestId":"0HNLTK3FDDGMF:00000001","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTK3FDDGMF"}
+[2026-05-29 10:39:36 INF] HTTP OPTIONS /api/v1/Auth/login responded 204 in 5.9775 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMF:00000001","ConnectionId":"0HNLTK3FDDGMF"}
+[2026-05-29 10:39:36 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"e24495ff-e426-4276-8a2a-e26dce92b8b9","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLTK3FDDGMF:00000002","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTK3FDDGMF"}
+[2026-05-29 10:39:36 INF] HTTP POST /api/v1/Auth/login responded 200 in 395.6837 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMF:00000002","ConnectionId":"0HNLTK3FDDGMF"}
+[2026-05-29 10:39:36 INF] HTTP OPTIONS /api/v1/Users responded 204 in 0.1890 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMF:00000003","ConnectionId":"0HNLTK3FDDGMF"}
+[2026-05-29 10:39:37 INF] HTTP GET /api/v1/Users responded 200 in 80.1635 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMF:00000004","ConnectionId":"0HNLTK3FDDGMF"}
+[2026-05-29 10:40:07 INF] HTTP GET /api/v1/Users responded 200 in 14.2159 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMG:00000001","ConnectionId":"0HNLTK3FDDGMG"}
+[2026-05-29 10:40:09 INF] HTTP GET /api/v1/Users responded 200 in 14.2305 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMG:00000002","ConnectionId":"0HNLTK3FDDGMG"}
+[2026-05-29 10:40:10 INF] HTTP GET /api/v1/Users responded 200 in 14.0642 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMG:00000003","ConnectionId":"0HNLTK3FDDGMG"}
+[2026-05-29 10:40:17 INF] HTTP GET /api/v1/Users responded 200 in 6.8033 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMG:00000004","ConnectionId":"0HNLTK3FDDGMG"}
+[2026-05-29 10:40:18 INF] HTTP GET /api/v1/Users responded 200 in 6.9582 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMG:00000005","ConnectionId":"0HNLTK3FDDGMG"}
+[2026-05-29 10:41:12 INF] HTTP GET /api/v1/Users responded 200 in 7.2600 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMH:00000001","ConnectionId":"0HNLTK3FDDGMH"}
+[2026-05-29 10:41:13 INF] HTTP GET /api/v1/Users responded 200 in 10.5370 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMH:00000002","ConnectionId":"0HNLTK3FDDGMH"}
+[2026-05-29 10:41:13 INF] HTTP GET /api/v1/Users responded 200 in 9.5258 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMH:00000003","ConnectionId":"0HNLTK3FDDGMH"}
+[2026-05-29 10:42:21 INF] HTTP GET /api/v1/Users responded 200 in 15.6610 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMI:00000001","ConnectionId":"0HNLTK3FDDGMI"}
+[2026-05-29 10:44:33 INF] User Angrxl registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"b02fb038-f6e4-46d8-b5a1-6a5be623bfe8","ActionName":"AuthService.Api.Controllers.UsersController.Create (AuthService.Api)","RequestId":"0HNLTK3FDDGMJ:00000001","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:44:33 INF] HTTP POST /api/v1/Users responded 201 in 2361.7488 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000001","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:44:33 INF] HTTP GET /api/v1/Users responded 200 in 3.1090 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000002","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:44:43 INF] HTTP GET /api/v1/Users responded 200 in 21.2815 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000003","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:44:49 INF] HTTP GET /api/v1/Users responded 200 in 10.7107 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000004","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:45:06 INF] HTTP GET /api/v1/Users responded 200 in 24.1688 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000005","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:45:20 INF] HTTP GET /api/v1/Users responded 200 in 5.0813 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000006","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:45:26 INF] HTTP GET /api/v1/Users responded 200 in 5.4232 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000007","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:45:28 INF] HTTP GET /api/v1/Users responded 200 in 6.8904 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000008","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:45:28 INF] HTTP GET /api/v1/Users responded 200 in 9.2857 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMJ:00000009","ConnectionId":"0HNLTK3FDDGMJ"}
+[2026-05-29 10:46:15 INF] HTTP GET /api/v1/Users responded 200 in 8.2643 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMK:00000001","ConnectionId":"0HNLTK3FDDGMK"}
+[2026-05-29 10:46:41 INF] HTTP GET /api/v1/Users responded 200 in 8.0512 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMK:00000002","ConnectionId":"0HNLTK3FDDGMK"}
+[2026-05-29 10:46:43 INF] HTTP GET /api/v1/Users responded 200 in 5.7459 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMK:00000003","ConnectionId":"0HNLTK3FDDGMK"}
+[2026-05-29 10:46:44 INF] HTTP GET /api/v1/Users responded 200 in 9.7468 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMK:00000004","ConnectionId":"0HNLTK3FDDGMK"}
+[2026-05-29 10:48:02 INF] HTTP GET /api/v1/Users responded 200 in 15.6511 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGML:00000001","ConnectionId":"0HNLTK3FDDGML"}
+[2026-05-29 10:48:24 INF] HTTP GET /api/v1/Users responded 200 in 8.6121 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGML:00000002","ConnectionId":"0HNLTK3FDDGML"}
+[2026-05-29 10:48:25 INF] HTTP GET /api/v1/Users responded 200 in 7.9832 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGML:00000003","ConnectionId":"0HNLTK3FDDGML"}
+[2026-05-29 10:48:36 INF] HTTP GET /api/v1/Users responded 200 in 8.4598 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGML:00000004","ConnectionId":"0HNLTK3FDDGML"}
+[2026-05-29 10:48:38 INF] HTTP GET /api/v1/Users responded 200 in 10.6196 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGML:00000005","ConnectionId":"0HNLTK3FDDGML"}
+[2026-05-29 10:48:48 INF] HTTP GET /api/v1/Users responded 200 in 14.2465 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGML:00000006","ConnectionId":"0HNLTK3FDDGML"}
+[2026-05-29 10:48:53 INF] HTTP GET /api/v1/Users responded 200 in 11.0616 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGML:00000007","ConnectionId":"0HNLTK3FDDGML"}
+[2026-05-29 10:56:12 INF] HTTP OPTIONS /api/v1/Users responded 204 in 4.9548 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMM:00000001","ConnectionId":"0HNLTK3FDDGMM"}
+[2026-05-29 10:56:12 INF] HTTP GET /api/v1/Users responded 200 in 30.9366 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMM:00000002","ConnectionId":"0HNLTK3FDDGMM"}
+[2026-05-29 10:56:31 INF] HTTP GET /api/v1/Users responded 200 in 8.3989 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMM:00000003","ConnectionId":"0HNLTK3FDDGMM"}
+[2026-05-29 10:58:18 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNLTK3FDDGMN:00000001","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTK3FDDGMN"}
+AuthService.Application.Exceptions.BusinessException: DPI already exists
+   at AuthService.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/Services/AuthService.cs:line 57
+   at AuthService.Api.Controllers.UsersController.Create(RegisterDto registerDto) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Api/Controllers/UsersController.cs:line 36
+   at lambda_method602(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-05-29 10:58:18 INF] HTTP POST /api/v1/Users responded 400 in 783.5845 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMN:00000001","ConnectionId":"0HNLTK3FDDGMN"}
+[2026-05-29 10:58:32 WRN] File validation failed: File size cannot exceed 5MB {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"b02fb038-f6e4-46d8-b5a1-6a5be623bfe8","ActionName":"AuthService.Api.Controllers.UsersController.Create (AuthService.Api)","RequestId":"0HNLTK3FDDGMN:00000002","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTK3FDDGMN"}
+[2026-05-29 10:58:32 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNLTK3FDDGMN:00000002","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTK3FDDGMN"}
+AuthService.Application.Exceptions.BusinessException: File size cannot exceed 5MB
+   at AuthService.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/Services/AuthService.cs:line 74
+   at AuthService.Api.Controllers.UsersController.Create(RegisterDto registerDto) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Api/Controllers/UsersController.cs:line 36
+   at lambda_method602(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-05-29 10:58:32 INF] HTTP POST /api/v1/Users responded 400 in 562.8789 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMN:00000002","ConnectionId":"0HNLTK3FDDGMN"}
+[2026-05-29 10:58:49 WRN] File validation failed: File size cannot exceed 5MB {"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"b02fb038-f6e4-46d8-b5a1-6a5be623bfe8","ActionName":"AuthService.Api.Controllers.UsersController.Create (AuthService.Api)","RequestId":"0HNLTK3FDDGMN:00000003","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTK3FDDGMN"}
+[2026-05-29 10:58:49 ERR] An unhandled exception occurred {"SourceContext":"AuthService.Api.Middlewares.GlobalExceptionMiddleware","RequestId":"0HNLTK3FDDGMN:00000003","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTK3FDDGMN"}
+AuthService.Application.Exceptions.BusinessException: File size cannot exceed 5MB
+   at AuthService.Application.Services.AuthService.RegisterAsync(RegisterDto registerDto) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/Services/AuthService.cs:line 74
+   at AuthService.Api.Controllers.UsersController.Create(RegisterDto registerDto) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Api/Controllers/UsersController.cs:line 36
+   at lambda_method602(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.RateLimiting.RateLimitingMiddleware.InvokeInternal(HttpContext context, EnableRateLimitingAttribute enableRateLimitingAttribute)
+   at AuthService.Api.Middlewares.GlobalExceptionMiddleware.InvokeAsync(HttpContext context) in /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Api/Middlewares/GlobalExceptionMiddleware.cs:line 18
+[2026-05-29 10:58:49 INF] HTTP POST /api/v1/Users responded 400 in 556.2660 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMN:00000003","ConnectionId":"0HNLTK3FDDGMN"}
+[2026-05-29 10:59:04 INF] User FRNK registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"b02fb038-f6e4-46d8-b5a1-6a5be623bfe8","ActionName":"AuthService.Api.Controllers.UsersController.Create (AuthService.Api)","RequestId":"0HNLTK3FDDGMN:00000004","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTK3FDDGMN"}
+[2026-05-29 10:59:04 INF] HTTP POST /api/v1/Users responded 201 in 4764.7208 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMN:00000004","ConnectionId":"0HNLTK3FDDGMN"}
+[2026-05-29 10:59:04 INF] HTTP GET /api/v1/Users responded 200 in 4.2921 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMN:00000005","ConnectionId":"0HNLTK3FDDGMN"}
+[2026-05-29 11:01:27 INF] User Benrgueta registered successfully {"EventId":{"Id":1001,"Name":"LogUserRegistered"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"b02fb038-f6e4-46d8-b5a1-6a5be623bfe8","ActionName":"AuthService.Api.Controllers.UsersController.Create (AuthService.Api)","RequestId":"0HNLTK3FDDGMO:00000001","RequestPath":"/api/v1/Users","ConnectionId":"0HNLTK3FDDGMO"}
+[2026-05-29 11:01:27 INF] HTTP POST /api/v1/Users responded 201 in 1398.2948 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMO:00000001","ConnectionId":"0HNLTK3FDDGMO"}
+[2026-05-29 11:01:27 INF] HTTP GET /api/v1/Users responded 200 in 4.1637 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMO:00000002","ConnectionId":"0HNLTK3FDDGMO"}
+[2026-05-29 11:01:44 INF] HTTP GET /api/v1/Users responded 200 in 6.7094 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMO:00000003","ConnectionId":"0HNLTK3FDDGMO"}
+[2026-05-29 11:01:50 INF] HTTP GET /api/v1/Users responded 200 in 11.0110 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMO:00000004","ConnectionId":"0HNLTK3FDDGMO"}
+[2026-05-29 11:02:08 INF] HTTP GET /api/v1/Users responded 200 in 4.0335 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMO:00000005","ConnectionId":"0HNLTK3FDDGMO"}
+[2026-05-29 11:02:22 INF] HTTP GET /api/v1/Users responded 200 in 8.1061 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMO:00000006","ConnectionId":"0HNLTK3FDDGMO"}
+[2026-05-29 11:02:41 INF] HTTP GET /api/v1/Users responded 200 in 9.5587 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMO:00000007","ConnectionId":"0HNLTK3FDDGMO"}
+[2026-05-29 11:05:05 INF] HTTP OPTIONS /api/v1/Auth/login responded 204 in 0.1279 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMP:00000001","ConnectionId":"0HNLTK3FDDGMP"}
+[2026-05-29 11:05:05 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"e24495ff-e426-4276-8a2a-e26dce92b8b9","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLTK3FDDGMP:00000002","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTK3FDDGMP"}
+[2026-05-29 11:05:05 INF] HTTP POST /api/v1/Auth/login responded 200 in 73.1463 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMP:00000002","ConnectionId":"0HNLTK3FDDGMP"}
+[2026-05-29 11:05:46 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"e24495ff-e426-4276-8a2a-e26dce92b8b9","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLTK3FDDGMQ:00000001","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:05:46 INF] HTTP POST /api/v1/Auth/login responded 200 in 77.1077 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMQ:00000001","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:05:46 INF] HTTP GET /api/v1/Users responded 200 in 3.6049 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMQ:00000002","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:06:10 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"e24495ff-e426-4276-8a2a-e26dce92b8b9","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLTK3FDDGMQ:00000003","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:06:10 INF] HTTP POST /api/v1/Auth/login responded 200 in 104.3162 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMQ:00000003","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:06:10 INF] HTTP GET /api/v1/Users responded 200 in 5.8536 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMQ:00000004","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:06:17 INF] User login succeeded {"EventId":{"Id":1002,"Name":"LogUserLoggedIn"},"SourceContext":"AuthService.Application.Services.AuthService","ActionId":"e24495ff-e426-4276-8a2a-e26dce92b8b9","ActionName":"AuthService.Api.Controllers.AuthController.Login (AuthService.Api)","RequestId":"0HNLTK3FDDGMQ:00000005","RequestPath":"/api/v1/Auth/login","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:06:17 INF] HTTP POST /api/v1/Auth/login responded 200 in 61.3542 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMQ:00000005","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:06:43 INF] HTTP OPTIONS /api/v1/Auth/profile responded 204 in 0.2204 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMQ:00000006","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:06:43 INF] HTTP GET /api/v1/Auth/profile responded 200 in 23.1594 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMQ:00000007","ConnectionId":"0HNLTK3FDDGMQ"}
+[2026-05-29 11:06:46 INF] HTTP GET /api/v1/Auth/profile responded 200 in 7.8966 ms {"SourceContext":"Serilog.AspNetCore.RequestLoggingMiddleware","RequestId":"0HNLTK3FDDGMQ:00000008","ConnectionId":"0HNLTK3FDDGMQ"}

@@ -1,21 +1,19 @@
+const { normalizeRole } = require('../helpers/resolveRole');
+
 module.exports = (...allowedRoles) => {
-    return (req, res, next) => {
+  const normalizedAllowed = allowedRoles.map((r) => normalizeRole(r));
 
-        if (!req.user || !req.user.role) {
-            return res.status(403).json({
-                message: "No tienes permisos para esta acción"
-            });
-        }
+  return (req, res, next) => {
+    if (!req.user?.role) {
+      return res.status(403).json({ success: false, message: 'No tienes permisos para esta acción' });
+    }
 
-        const userRole = req.user.role.toUpperCase();
-        const normalizedRoles = allowedRoles.map(r => r.toUpperCase());
+    const userRole = normalizeRole(req.user.role);
 
-        if (!normalizedRoles.includes(userRole)) {
-            return res.status(403).json({
-                message: "No tienes permisos para esta acción"
-            });
-        }
+    if (!normalizedAllowed.includes(userRole)) {
+      return res.status(403).json({ success: false, message: 'No tienes permisos para esta acción' });
+    }
 
-        next();
-    };
+    next();
+  };
 };

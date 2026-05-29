@@ -21,5 +21,17 @@ public class UserProfile
     [RegularExpression(@"^\d{8}$", ErrorMessage = "El número de telefono debe de contener solo números")]
     public string Phone { get; set; } = string.Empty;
 
+    [MaxLength(200)]
+    public string Address { get; set; } = string.Empty;
+
+    [MaxLength(100)]
+    public string Job { get; set; } = string.Empty;
+
+    [MaxLength(13)]
+    [RegularExpression(@"^\d{13}$", ErrorMessage = "El DPI debe contener exactamente 13 dígitos")]
+    public string Dpi { get; set; } = string.Empty;
+
+    public decimal Income { get; set; }
+
     public User User { get; set; } = null!;
 }

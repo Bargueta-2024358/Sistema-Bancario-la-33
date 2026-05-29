@@ -1,60 +1,105 @@
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.deps.json
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.dll
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.pdb
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Domain.dll
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Domain.pdb
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.AssemblyReference.cache
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfoInputs.cache
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfo.cs
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.CoreCompileInputs.cache
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthServ.67992DEE.Up2Date
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.dll
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\refint\AuthService.Application.dll
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.pdb
-D:\Kinal\2. Diversificado\3. Sexto Diversificado\8. Taller\2. Tecnología\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\ref\AuthService.Application.dll
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.deps.json
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.dll
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.pdb
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Domain.dll
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Domain.pdb
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.AssemblyReference.cache
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfoInputs.cache
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfo.cs
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.CoreCompileInputs.cache
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthServ.67992DEE.Up2Date
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.dll
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\refint\AuthService.Application.dll
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.pdb
-C:\Users\Informatica\Documents\IN6AV\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\ref\AuthService.Application.dll
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.deps.json
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.dll
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.pdb
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Domain.dll
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Domain.pdb
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.AssemblyReference.cache
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfoInputs.cache
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfo.cs
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.CoreCompileInputs.cache
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthServ.67992DEE.Up2Date
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.dll
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\refint\AuthService.Application.dll
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.pdb
-C:\Users\wendy\OneDrive\Documentos\Kinal Sports\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\ref\AuthService.Application.dll
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.deps.json
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.dll
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Application.pdb
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Domain.dll
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\bin\Debug\net8.0\AuthService.Domain.pdb
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.AssemblyReference.cache
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfoInputs.cache
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.AssemblyInfo.cs
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.csproj.CoreCompileInputs.cache
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthServ.67992DEE.Up2Date
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.dll
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\refint\AuthService.Application.dll
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\AuthService.Application.pdb
-C:\Users\wendy\OneDrive\Documentos\IN6AV\Banco 33\authentication-service\auth-service\src\AuthService.Application\obj\Debug\net8.0\ref\AuthService.Application.dll
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.deps.json
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.dll
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.pdb
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.dll
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.pdb
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.AssemblyReference.cache
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfoInputs.cache
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfo.cs
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.CoreCompileInputs.cache
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthServ.67992DEE.Up2Date
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.dll
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/refint/AuthService.Application.dll
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.pdb
+D:/Kinal/2. Diversificado/3. Sexto Diversificado/8. Taller/2. Tecnología/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/ref/AuthService.Application.dll
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.deps.json
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.dll
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.pdb
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.dll
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.pdb
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.AssemblyReference.cache
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfoInputs.cache
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfo.cs
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.CoreCompileInputs.cache
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthServ.67992DEE.Up2Date
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.dll
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/refint/AuthService.Application.dll
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.pdb
+C:/Users/Informatica/Documents/IN6AV/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/ref/AuthService.Application.dll
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.deps.json
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.dll
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.pdb
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.dll
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.pdb
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.AssemblyReference.cache
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfoInputs.cache
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfo.cs
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.CoreCompileInputs.cache
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthServ.67992DEE.Up2Date
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.dll
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/refint/AuthService.Application.dll
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.pdb
+C:/Users/wendy/OneDrive/Documentos/Kinal Sports/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/ref/AuthService.Application.dll
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.deps.json
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.dll
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.pdb
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.dll
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.pdb
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.AssemblyReference.cache
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfoInputs.cache
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfo.cs
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.CoreCompileInputs.cache
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthServ.67992DEE.Up2Date
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.dll
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/refint/AuthService.Application.dll
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.pdb
+C:/Users/wendy/OneDrive/Documentos/IN6AV/Banco 33/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/ref/AuthService.Application.dll
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.deps.json
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.dll
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.pdb
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.dll
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.pdb
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.AssemblyReference.cache
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfoInputs.cache
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfo.cs
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.CoreCompileInputs.cache
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthServ.67992DEE.Up2Date
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.dll
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/refint/AuthService.Application.dll
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.pdb
+c:/Users/useri/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/ref/AuthService.Application.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.deps.json
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.pdb
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.pdb
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.AssemblyReference.cache
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfoInputs.cache
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfo.cs
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.CoreCompileInputs.cache
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthServ.67992DEE.Up2Date
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/refint/AuthService.Application.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.pdb
+/Users/frank/Downloads/Sistema-Bancario-la-33-main (1)/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/ref/AuthService.Application.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.deps.json
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Application.pdb
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/bin/Debug/net8.0/AuthService.Domain.pdb
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.AssemblyReference.cache
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfoInputs.cache
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.AssemblyInfo.cs
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.csproj.CoreCompileInputs.cache
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthServ.67992DEE.Up2Date
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/refint/AuthService.Application.dll
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/AuthService.Application.pdb
+/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/Debug/net8.0/ref/AuthService.Application.dll
