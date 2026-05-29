@@ -8,7 +8,7 @@ namespace AuthService.Persistence.Data;
 
 public static class DataSeeder
 {
-    public static async Task SeendAsync(ApplicationDbContext context)
+    public static async Task SeedAsync(ApplicationDbContext context)
     {
         if (!context.Roles.Any())
         {
@@ -47,9 +47,9 @@ public static class DataSeeder
                     Id = userId,
                     Name = "Admin User",
                     SurName = "Admin Surname",
-                    UserName = "admin",
-                    Email = "ksadmin@local.com",
-                    Password = passwordHasher.HashPassword("Kinal2026!"),
+                    UserName = "ADMINB",
+                    Email = "adminb@banco33.local",
+                    Password = passwordHasher.HashPassword("ADMINB"),
                     Status = true,
 
                     UserProfile = new UserProfile

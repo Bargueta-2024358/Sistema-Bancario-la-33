@@ -8,24 +8,32 @@ import {
   deactivateCurrency,
 } from '../../../shared/api/admin';
 
+const pickCurrency = (res) => res?.data ?? res;
+
 export const useCurrencyStore = create((set, get) => ({
   currencies: [],
   loading: false,
   error: null,
 
-  getCurrencies: async () => {
+  getCurrencies: async (params) => {
     try {
       set({ loading: true, error: null });
 
-      const res = await getCurrencies();
+      const res = await getCurrencies(params);
 
       set({
-        currencies: res.data || [],
+        currencies: res.data ?? res.currencies ?? [],
         loading: false,
       });
     } catch (err) {
+      const message =
+        err.response?.data?.message ||
+        (err.response?.status === 429
+          ? 'Demasiadas peticiones. Espera un momento e intenta de nuevo.'
+          : 'Error obteniendo monedas');
+
       set({
-        error: 'Error obteniendo monedas',
+        error: message,
         loading: false,
       });
     }
@@ -34,13 +42,16 @@ export const useCurrencyStore = create((set, get) => ({
   createCurrency: async (payload) => {
     try {
       const res = await createCurrency(payload);
+      const created = pickCurrency(res);
 
       set({
-        currencies: [res.data, ...get().currencies],
+        currencies: [created, ...get().currencies],
       });
+
+      return created;
     } catch (err) {
       set({
-        error: 'Error creando moneda',
+        error: err.response?.data?.message || 'Error creando moneda',
       });
 
       throw err;
@@ -50,66 +61,56 @@ export const useCurrencyStore = create((set, get) => ({
   updateCurrency: async (id, payload) => {
     try {
       const res = await updateCurrency(id, payload);
+      const updated = pickCurrency(res);
 
       set({
-        currencies: get().currencies.map((c) =>
-          c._id === id ? res.data : c
-        ),
+        currencies: get().currencies.map((c) => (c._id === id ? updated : c)),
+        error: null,
       });
+
+      return updated;
     } catch (err) {
       set({
-        error: 'Error actualizando moneda',
+        error: err.response?.data?.message || 'Error actualizando moneda',
       });
 
       throw err;
     }
   },
 
- activateCurrency: async (id) => {
-      try {
-        const res =
-          await activateCurrency(id);
+  activateCurrency: async (id) => {
+    try {
+      const res = await activateCurrency(id);
+      const updated = pickCurrency(res);
 
-        set({
-          currencies:
-            get().currencies.map((c) =>
-              c._id === id
-                ? res.data
-                : c
-            ),
-        });
-      } catch (err) {
-        set({
-          error:
-            'Error activando moneda',
-        });
+      set({
+        currencies: get().currencies.map((c) => (c._id === id ? updated : c)),
+        error: null,
+      });
+    } catch (err) {
+      set({
+        error: err.response?.data?.message || 'Error activando moneda',
+      });
 
-        throw err;
-      }
-    },
+      throw err;
+    }
+  },
 
-    deactivateCurrency: async (
-      id
-    ) => {
-      try {
-        const res =
-          await deactivateCurrency(id);
+  deactivateCurrency: async (id) => {
+    try {
+      const res = await deactivateCurrency(id);
+      const updated = pickCurrency(res);
 
-        set({
-          currencies:
-            get().currencies.map((c) =>
-              c._id === id
-                ? res.data
-                : c
-            ),
-        });
-      } catch (err) {
-        set({
-          error:
-            'Error desactivando moneda',
-        });
+      set({
+        currencies: get().currencies.map((c) => (c._id === id ? updated : c)),
+        error: null,
+      });
+    } catch (err) {
+      set({
+        error: err.response?.data?.message || 'Error desactivando moneda',
+      });
 
-        throw err;
-      }
-    },
+      throw err;
+    }
+  },
 }));

@@ -31,14 +31,14 @@ export const ExchangeRates = () => {
 
   useEffect(() => {
     getExchangeRates();
-    getCurrencies({ isActive: true });
+    getCurrencies();
   }, []);
 
   useEffect(() => {
     if (error) showError(error);
   }, [error]);
 
-  if (loading) return <Spinner />;
+  if (loading && (!exchangeRates || exchangeRates.length === 0)) return <Spinner />;
 
   return (
     <div className="min-h-screen bg-[#e7dbcb] p-8">
@@ -70,7 +70,7 @@ export const ExchangeRates = () => {
       {/* GRID */}
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
-        {exchangeRates.map((rate) => (
+        {(exchangeRates || []).map((rate) => (
           <div
             key={rate._id}
             className={`rounded-3xl border p-6 shadow-[0_10px_30px_rgba(0,0,0,0.05)] transition-all ${

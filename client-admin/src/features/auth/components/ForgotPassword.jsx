@@ -1,14 +1,30 @@
 import { useForm } from 'react-hook-form';
+import { forgotPassword } from '../../../shared/api/auth';
+import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 export const ForgotPassword = ({ onSwitch }) => {
+  const [loading, setLoading] = useState(false);
   const {
     register,
-    // handleSubmit,
+    handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const onSubmit = async ({ email }) => {
+    setLoading(true);
+    try {
+      const res = await forgotPassword(email.trim());
+      toast.success(res?.message || 'Si el correo existe, enviamos enlace de recuperación.');
+    } catch (err) {
+      toast.error(err.response?.data?.message || 'Error al solicitar recuperación');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <form className='space-y-5'>
+    <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
       <div>
         <label htmlFor='email' className='block text-sm font-medium text-gray-800 mb-1.5'>
           Email
@@ -26,9 +42,10 @@ export const ForgotPassword = ({ onSwitch }) => {
       </div>
       <button
         type='submit'
+        disabled={loading}
         className='w-full bg-[#fada28] hover:opacity-95 text-[#2f2a1d] font-medium py-2.5 px-4 rounded-lg transition-colors duration-200 text-sm'
       >
-        Recuperar Contraseña
+        {loading ? 'Enviando...' : 'Recuperar Contraseña'}
       </button>
       <p className='text-center text-sm'>
         ¿Recordaste tu contraseña?{' '}

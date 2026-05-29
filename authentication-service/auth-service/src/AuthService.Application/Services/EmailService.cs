@@ -5,6 +5,7 @@ using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
 using AuthService.Application.Interfaces;
+using AuthService.Application.Templates;
 using System.IO;
 
 namespace AuthService.Application.Services;
@@ -13,56 +14,26 @@ public class EmailService(IConfiguration configuration, ILogger<EmailService> lo
 {
     public async Task SendEmailVerificationAsync(string email, string username, string token)
     {
-        var subject = "Verifica tu dirección de correo electrónico";
-        var verificationUrl = $"{configuration["AppSettings:FrontendUrl"]}/verify-email?token={token}";
-
-        var body = $@"
-            <h2>¡Bienvenido {username}!</h2>
-            <p>Por favor, verifica tu dirección de correo electrónico haciendo clic en el enlace a continuación:</p>
-            <a href='{verificationUrl}' style='background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>
-                Verificar Correo Electrónico
-            </a>
-            <p>Si no puedes hacer clic en el enlace, copia y pega esta URL en tu navegador:</p>
-            <p>{verificationUrl}</p>
-            <p>Este enlace expirará en 24 horas.</p>
-            <p>Si no creaste una cuenta, por favor ignora este correo.</p>
-        ";
+        var subject = "Confirma tu correo — Banco La 33";
+        var verificationUrl = $"{configuration["AppSettings:FrontendUrl"]}/verify-email?token={Uri.EscapeDataString(token)}";
+        var body = EmailTemplates.VerificationEmail(username, verificationUrl, token);
 
         await SendEmailAsync(email, subject, body);
     }
 
     public async Task SendPasswordResetAsync(string email, string username, string token)
     {
-        var subject = "Restablece tu contraseña";
-        var resetUrl = $"{configuration["AppSettings:FrontendUrl"]}/reset-password?token={token}";
-
-        var body = $@"
-            <h2>Solicitud de Restablecimiento de Contraseña</h2>
-            <p>Hola {username},</p>
-            <p>Solicitaste restablecer tu contraseña. Haz clic en el enlace a continuación para restablecerla:</p>
-            <a href='{resetUrl}' style='background-color: #dc3545; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;'>
-                Restablecer Contraseña
-            </a>
-            <p>Si no puedes hacer clic en el enlace, copia y pega esta URL en tu navegador:</p>
-            <p>{resetUrl}</p>
-            <p>Este enlace expirará en 1 hora.</p>
-            <p>Si no solicitaste esto, por favor ignora este correo y tu contraseña permanecerá sin cambios.</p>
-        ";
+        var subject = "Restablece tu contraseña — Banco La 33";
+        var resetUrl = $"{configuration["AppSettings:FrontendUrl"]}/reset-password?token={Uri.EscapeDataString(token)}";
+        var body = EmailTemplates.PasswordResetEmail(username, resetUrl);
 
         await SendEmailAsync(email, subject, body);
     }
 
     public async Task SendWelcomeEmailAsync(string email, string username)
     {
-        var subject = "¡Bienvenido a Banco 33!";
-
-        var body = $@"
-            <h2>¡Bienvenido a Banco 33, {username}!</h2>
-            <p>Tu cuenta ha sido verificada y activada exitosamente.</p>
-            <p>Ahora puedes disfrutar de todas las funciones de nuestra plataforma.</p>
-            <p>Si tienes alguna pregunta, no dudes en contactar a nuestro equipo de soporte.</p>
-            <p>¡Gracias por unirte a nosotros!</p>
-        ";
+        var subject = "¡Bienvenido a Banco La 33!";
+        var body = EmailTemplates.WelcomeEmail(username);
 
         await SendEmailAsync(email, subject, body);
     }

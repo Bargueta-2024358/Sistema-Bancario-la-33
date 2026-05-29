@@ -35,6 +35,43 @@ public class AuthController(IAuthService authService) : ControllerBase
         });
     }
 
+    [HttpPut("profile")]
+    [Authorize(Roles = "CLIENT,USER_ROLE")]
+    public async Task<ActionResult<object>> UpdateProfile([FromBody] UpdateProfileDto dto)
+    {
+        var userIdClaim = User.Claims.FirstOrDefault(c =>
+            c.Type == "sub" || c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier");
+        if (userIdClaim == null || string.IsNullOrEmpty(userIdClaim.Value))
+            return Unauthorized();
+
+        var updated = await authService.UpdateMyProfileAsync(userIdClaim.Value, dto);
+        return Ok(new
+        {
+            success = true,
+            message = "Perfil actualizado",
+            data = updated
+        });
+    }
+
+    [HttpPut("profile/picture")]
+    [Authorize(Roles = "CLIENT,USER_ROLE")]
+    [RequestSizeLimit(10 * 1024 * 1024)]
+    public async Task<ActionResult<object>> UpdateProfilePicture([FromForm] UploadProfilePictureDto dto)
+    {
+        var userIdClaim = User.Claims.FirstOrDefault(c =>
+            c.Type == "sub" || c.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier");
+        if (userIdClaim == null || string.IsNullOrEmpty(userIdClaim.Value))
+            return Unauthorized();
+
+        var updated = await authService.UpdateProfilePictureAsync(userIdClaim.Value, dto);
+        return Ok(new
+        {
+            success = true,
+            message = "Foto de perfil actualizada",
+            data = updated
+        });
+    }
+
     [HttpPost("profile/by-id")]
     [EnableRateLimiting("ApiPolicy")]
     public async Task<ActionResult<object>> GetProfileById([FromBody] GetProfileByIdDto request)
@@ -66,12 +103,15 @@ public class AuthController(IAuthService authService) : ControllerBase
         });
     }
     [HttpPost("register")]
-    [RequestSizeLimit(10 * 1024 * 1024)] // 10MB límite
+    [RequestSizeLimit(10 * 1024 * 1024)]
     [EnableRateLimiting("AuthPolicy")]
-    public async Task<ActionResult<RegisterResponseDto>> Register([FromForm] RegisterDto registerDto)
+    public ActionResult RegisterDisabled()
     {
-        var result = await authService.RegisterAsync(registerDto);
-        return StatusCode(201, result);
+        return StatusCode(403, new
+        {
+            success = false,
+            message = "Registro público deshabilitado. Use el panel admin (POST /api/v1/Users)."
+        });
     }
 
     [HttpPost("login")]
@@ -87,6 +127,8 @@ public class AuthController(IAuthService authService) : ControllerBase
     public async Task<ActionResult<EmailResponseDto>> VerifyEmail([FromBody] VerifyEmailDto verifyEmailDto)
     {
         var result = await authService.VerifyEmailAsync(verifyEmailDto);
+        if (!result.Success)
+            return BadRequest(result);
         return Ok(result);
     }
 

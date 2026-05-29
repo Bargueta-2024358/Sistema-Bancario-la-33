@@ -47,14 +47,18 @@ export const ProductModal = ({
         currency: selectedCurrency?._id,
       };
 
-      await saveProduct(payload, product?._id);
+      await saveProduct(payload, product?._id, currencies);
 
       showSuccess(product ? 'Producto actualizado' : 'Producto creado');
 
       reset();
       onClose();
     } catch (error) {
-      showError(error?.response?.data?.message || 'Error al guardar producto');
+      const apiErrors = error?.response?.data?.errors;
+      const message = Array.isArray(apiErrors)
+        ? apiErrors.map((e) => e.message).join(', ')
+        : error?.response?.data?.message || 'Error al guardar producto';
+      showError(message);
     }
   };
 
@@ -99,7 +103,9 @@ export const ProductModal = ({
         >
           <option value="">Selecciona moneda</option>
 
-          {currencies.map((c) => (
+          {currencies
+            .filter((c) => c.isActive !== false)
+            .map((c) => (
             <option key={c._id} value={c.code}>
               {c.symbol} {c.code} - {c.name}
             </option>

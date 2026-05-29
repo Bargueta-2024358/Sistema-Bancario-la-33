@@ -1,30 +1,53 @@
-using System;
 using AuthService.Application.Interfaces;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using Microsoft.Extensions.Configuration;
 
-
 namespace AuthService.Application.Services;
 
-public class CloudinaryService(IConfiguration configuration) : ICloudinaryService
+public class CloudinaryService : ICloudinaryService
 {
-    private readonly Cloudinary _cloudinary = new(new Account(
-        configuration["CloudinarySettings:Cloudname"],
-        configuration["CloudinarySettings:ApiKey"],
-        configuration["CloudinarySettings:ApiSecret"]
-    ));
+    private readonly Cloudinary _cloudinary;
+    private readonly IConfiguration _configuration;
+
+    public CloudinaryService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+
+        var cloudName = configuration["CloudinarySettings:CloudName"]
+                        ?? configuration["CloudinarySettings:Cloudname"]
+                        ?? throw new InvalidOperationException("CloudinarySettings:CloudName no configurado");
+
+        var apiKey = configuration["CloudinarySettings:ApiKey"]
+                     ?? throw new InvalidOperationException("CloudinarySettings:ApiKey no configurado");
+
+        var apiSecret = configuration["CloudinarySettings:ApiSecret"]
+                        ?? throw new InvalidOperationException("CloudinarySettings:ApiSecret no configurado");
+
+        _cloudinary = new Cloudinary(new Account(cloudName, apiKey, apiSecret));
+    }
+
+    private string CloudName =>
+        _configuration["CloudinarySettings:CloudName"]
+        ?? _configuration["CloudinarySettings:Cloudname"]
+        ?? "dcroiajue";
+
+    private string Folder =>
+        _configuration["CloudinarySettings:Folder"]?.Trim('/') ?? "auth-b33-in6av/profiles";
+
+    private string? UploadVersion =>
+        _configuration["CloudinarySettings:UploadVersion"]?.Trim('/');
+
+    private string DefaultAvatarFile =>
+        _configuration["CloudinarySettings:DefaultAvatarPath"]?.Trim('/') ?? "DefaultAvatar_lunlmo.webp";
 
     public async Task<bool> DeleteImageAsync(string publicId)
     {
         try
         {
-            var deleteParams = new DelResParams
-            {
-                PublicIds = [publicId]
-            };
-            var result = await _cloudinary.DeleteResourcesAsync(deleteParams);
-            return result.Deleted?.ContainsKey(publicId) == true;
+            var id = NormalizePublicId(publicId);
+            var result = await _cloudinary.DeleteResourcesAsync(new DelResParams { PublicIds = [id] });
+            return result.Deleted?.ContainsKey(id) == true;
         }
         catch
         {
@@ -34,21 +57,16 @@ public class CloudinaryService(IConfiguration configuration) : ICloudinaryServic
 
     public string GetDefaultAvatarUrl()
     {
-        var defaultPath = configuration["CloudinarySettings:DefaultAvatarPath"] ?? "avatarDefault-1749508519496.png";
-        if(defaultPath.Contains('/')) return defaultPath.Split('/').Last();
-        return defaultPath;
+        var file = DefaultAvatarFile;
+        return file.Contains('/') ? file.Split('/').Last() : file;
     }
 
     public string GetFullImageUrl(string imagePath)
     {
-        var baseUrl = configuration["CloudinarySettings:BaseUrl"] ?? "https://res.cloudinary.com/dwjn1tpta/image/upload/v1769726009/";
-        var folder = configuration["CloudianrySettings:Folder"] ?? "auth_ks_in6av/profiles";
-        var defaultPath = configuration["CloudinarySettings:DefaultPath"] ?? "avatarDefault-1749508519496.png";
+        if (string.IsNullOrWhiteSpace(imagePath))
+            return string.Empty;
 
-        var pathToUse = string.IsNullOrEmpty(imagePath) ? defaultPath : imagePath;
-        if(!pathToUse.Contains('/')) pathToUse = $"{folder}/{pathToUse}";
-
-        return $"{baseUrl}{pathToUse}";
+        return imagePath;
     }
 
     public async Task<string> UploadImageAsync(IFileData imageFile, string fileName)
@@ -56,33 +74,51 @@ public class CloudinaryService(IConfiguration configuration) : ICloudinaryServic
         try
         {
             using var stream = new MemoryStream(imageFile.Data);
-            var folder = configuration["CloudinarySettings:Folder"] ?? "auth_ks_in6av/profiles";
-            
+            var publicId = $"{Folder}/{Path.GetFileName(fileName)}";
+
             var uploadParams = new ImageUploadParams
             {
                 File = new FileDescription(imageFile.FileName, stream),
-                PublicId = $"{folder}/{fileName}",
-                Folder = folder,
+                PublicId = publicId,
+                Overwrite = true,
                 Transformation = new Transformation()
                     .Width(400)
                     .Height(400)
                     .Crop("fill")
                     .Gravity("face")
                     .Quality("auto")
-                    .FetchFormat("auto")
+                    .FetchFormat("auto"),
             };
+
             var uploadResult = await _cloudinary.UploadAsync(uploadParams);
 
-            if(uploadResult.Error != null)
-            {
-                throw new InvalidOperationException($"Error al subir la imagen: {uploadResult.Error.Message}");
-            }
+            if (uploadResult.Error != null)
+                throw new InvalidOperationException($"Cloudinary: {uploadResult.Error.Message}");
 
-            return fileName;
+            return uploadResult.SecureUrl.ToString();
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is not InvalidOperationException)
         {
-            throw new InvalidOperationException($"Error al subir la imagen a cloudinary: {ex.Message}", ex);
+            throw new InvalidOperationException($"Error al subir la imagen a Cloudinary: {ex.Message}", ex);
         }
+    }
+
+    private string NormalizePublicId(string path)
+    {
+        var p = path.Trim().TrimStart('/');
+        if (p.StartsWith("http", StringComparison.OrdinalIgnoreCase))
+            return p;
+
+        if (p.Contains('/'))
+            return p;
+
+        return $"{Folder}/{p}";
+    }
+
+    private string BuildDeliveryUrl(string publicId)
+    {
+        var id = publicId.Trim().TrimStart('/');
+        var versionPart = string.IsNullOrEmpty(UploadVersion) ? "" : $"{UploadVersion}/";
+        return $"https://res.cloudinary.com/{CloudName}/image/upload/{versionPart}{id}";
     }
 }

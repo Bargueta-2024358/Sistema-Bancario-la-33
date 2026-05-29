@@ -40,11 +40,6 @@ export const useSaveProduct = () => {
         selectedCurrency?._id,
     };
 
-    console.log(
-      'PRODUCT PAYLOAD =>',
-      payload
-    );
-
     if (id) {
       return await updateProduct(
         id,

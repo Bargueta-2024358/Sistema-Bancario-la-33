@@ -1,12 +1,12 @@
-import { useAuthStore } from '../../features/auth/store/authStore.js';
 import { DashboardContainer } from '../../shared/components/layout/DashboardContainer.jsx';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
-export const DashboardPage = () => {
-  const { user, logout } = useAuthStore();
+export const DashboardPage = ({ variant }) => {
+  const location = useLocation();
+  const resolved = variant || (location.pathname.startsWith('/client') ? 'client' : 'admin');
 
   return (
-    <DashboardContainer user={user} onLogout={logout}>
+    <DashboardContainer variant={resolved}>
       <Outlet />
     </DashboardContainer>
   );

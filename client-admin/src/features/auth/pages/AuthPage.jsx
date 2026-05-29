@@ -1,15 +1,33 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { LoginForm } from '../components/LoginForm.jsx';
 import { ForgotPassword } from '../components/ForgotPassword.jsx';
-import { RegisterForm } from '../components/RegisterForm.jsx';
+import { ConfirmEmailPanel } from '../components/ConfirmEmailPanel.jsx';
 import chitaLogo from '../../../assets/img/logo chita banco.png';
 
 export const AuthPage = () => {
-  const [view, setView] = useState('login'); // 'login', 'forgot', 'register'
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [view, setView] = useState('login');
+  const [pendingEmail, setPendingEmail] = useState('');
+
+  useEffect(() => {
+    if (searchParams.get('view') === 'register') {
+      setView('login');
+      setSearchParams({}, { replace: true });
+      return;
+    }
+
+    if (searchParams.get('view') === 'confirm') {
+      setView('confirm');
+      const email = searchParams.get('email');
+      if (email) setPendingEmail(email);
+      setSearchParams({}, { replace: true });
+    }
+  }, [searchParams, setSearchParams]);
 
   const getTitle = () => {
     if (view === 'forgot') return 'Recuperar Contraseña';
-    if (view === 'register') return 'Crear Cuenta';
+    if (view === 'confirm') return 'Confirmar correo';
     return 'Iniciar sesión';
   };
 
@@ -28,18 +46,17 @@ export const AuthPage = () => {
 
         <div className='mt-8'>
           {view === 'login' && (
-            <LoginForm 
-              onForgot={() => setView('forgot')} 
-              onRegister={() => setView('register')}
+            <LoginForm
+              onForgot={() => setView('forgot')}
             />
           )}
           {view === 'forgot' && (
             <ForgotPassword onSwitch={() => setView('login')} />
           )}
-          {view === 'register' && (
-            <RegisterForm 
-              onSwitch={() => setView('login')}
-              onSuccess={() => setView('login')}
+          {view === 'confirm' && (
+            <ConfirmEmailPanel
+              defaultEmail={pendingEmail}
+              onSwitchLogin={() => setView('login')}
             />
           )}
         </div>

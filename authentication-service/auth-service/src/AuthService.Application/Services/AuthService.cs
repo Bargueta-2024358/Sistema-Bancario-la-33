@@ -20,12 +20,19 @@ public class AuthService(
     IJwtTokenService jwtTokenService,
     ICloudinaryService cloudinaryService,
     IEmailService emailService,
+    INotificationClient notificationClient,
     IConfiguration configuration,
     ILogger<AuthService> logger) : IAuthService
 {
     private readonly ICloudinaryService _cloudinaryService = cloudinaryService;
     public async Task<RegisterResponseDto> RegisterAsync(RegisterDto registerDto)
     {
+        registerDto.Name = registerDto.Name?.Trim() ?? string.Empty;
+        registerDto.Surname = registerDto.Surname?.Trim() ?? string.Empty;
+        registerDto.Username = registerDto.Username?.Trim() ?? string.Empty;
+        registerDto.Phone = registerDto.Phone?.Trim() ?? string.Empty;
+        registerDto.Dpi = registerDto.Dpi?.Trim();
+
         // Verificar si el email ya existe
         if (await userRepository.ExistsByEmailAsync(registerDto.Email))
         {
@@ -38,6 +45,21 @@ public class AuthService(
         {
             logger.LogRegistrationWithExistingUsername();
             throw new BusinessException(ErrorCodes.USERNAME_ALREADY_EXISTS, "Username already exists");
+        }
+
+        if (await userRepository.ExistsByPhoneAsync(registerDto.Phone))
+        {
+            throw new BusinessException(ErrorCodes.PHONE_ALREADY_EXISTS, "Phone already exists");
+        }
+
+        if (!string.IsNullOrWhiteSpace(registerDto.Dpi) && await userRepository.ExistsByDpiAsync(registerDto.Dpi))
+        {
+            throw new BusinessException(ErrorCodes.DPI_ALREADY_EXISTS, "DPI already exists");
+        }
+
+        if (await userRepository.ExistsByFullNameAsync(registerDto.Name, registerDto.Surname))
+        {
+            throw new BusinessException(ErrorCodes.FULLNAME_ALREADY_EXISTS, "A user with the same name and surname already exists");
         }
 
         // Validar y manejar la imagen de perfil
@@ -77,11 +99,11 @@ public class AuthService(
         var userRoleId = UuidGenerator.GenerateUserId();
         var userPasswordResetId = UuidGenerator.GenerateUserId();
 
-        // Obtener el rol por defecto (USER_ROLE) ya seedado en DB
-        var defaultRole = await roleRepository.GetByNameAsync(RoleConstants.USER_ROLE);
+        var roleName = RoleConstants.NormalizeDbRole(registerDto.Role);
+        var defaultRole = await roleRepository.GetByNameAsync(roleName);
         if (defaultRole == null)
         {
-            throw new InvalidOperationException($"Default role '{RoleConstants.USER_ROLE}' not found. Ensure seeding runs before registration.");
+            throw new InvalidOperationException($"Role '{roleName}' not found. Ensure seeding runs before registration.");
         }
 
         var user = new User
@@ -92,21 +114,25 @@ public class AuthService(
             UserName = registerDto.Username,
             Email = registerDto.Email.ToLowerInvariant(),
             Password = passwordHashService.HashPassword(registerDto.Password),
-            Status = false,
+            Status = registerDto.ActivateImmediately,
             UserProfile = new UserProfile
             {
                 Id = userProfileId,
                 UserId = userId,
                 ProfilePicture = profilePicturePath,
-                Phone = registerDto.Phone
+                Phone = registerDto.Phone,
+                Dpi = registerDto.Dpi?.Trim() ?? string.Empty,
+                Address = registerDto.Address?.Trim() ?? string.Empty,
+                Job = registerDto.Job?.Trim() ?? string.Empty,
+                Income = registerDto.Income ?? 0
             },
             UserEmail = new UserEmail
             {
                 Id = userEmailId,
                 UserId = userId,
-                EmailVerified = false,
-                EmailVerificationToken = emailVerificationToken,
-                EmailVerificationTokenExpiry = DateTime.UtcNow.AddHours(24)
+                EmailVerified = registerDto.ActivateImmediately,
+                EmailVerificationToken = registerDto.ActivateImmediately ? null : emailVerificationToken,
+                EmailVerificationTokenExpiry = registerDto.ActivateImmediately ? null : DateTime.UtcNow.AddHours(24)
             },
             UserRoles =
             [
@@ -131,27 +157,30 @@ public class AuthService(
 
         logger.LogUserRegistered(createdUser.UserName);
 
-        // Enviar email de verificación en background
-        _ = Task.Run(async () =>
+        if (!registerDto.ActivateImmediately)
         {
-            try
+            _ = Task.Run(async () =>
             {
-                await emailService.SendEmailVerificationAsync(createdUser.Email, createdUser.UserName, emailVerificationToken);
-                logger.LogInformation("Verification email sent");
-            }
-            catch (Exception ex)
-            {
-                logger.LogError(ex, "Failed to send verification email");
-            }
-        });
+                try
+                {
+                    await emailService.SendEmailVerificationAsync(createdUser.Email, createdUser.UserName, emailVerificationToken);
+                    logger.LogInformation("Verification email sent");
+                }
+                catch (Exception ex)
+                {
+                    logger.LogError(ex, "Failed to send verification email");
+                }
+            });
+        }
 
-        // Crear respuesta sin JWT - solo confirmación de registro
         return new RegisterResponseDto
         {
             Success = true,
             User = MapToUserResponseDto(createdUser),
-            Message = "Usuario registrado exitosamente. Por favor, verifica tu email para activar la cuenta.",
-            EmailVerificationRequired = true
+            Message = registerDto.ActivateImmediately
+                ? "Usuario creado y activado correctamente."
+                : "Usuario registrado. Verifica el email para activar la cuenta.",
+            EmailVerificationRequired = !registerDto.ActivateImmediately
         };
     }
 
@@ -211,7 +240,7 @@ public class AuthService(
 
     private UserResponseDto MapToUserResponseDto(User user)
     {
-        var userRole = user.UserRoles.FirstOrDefault()?.Role?.Name ?? RoleConstants.USER_ROLE;
+        var dbRole = user.UserRoles.FirstOrDefault()?.Role?.Name ?? RoleConstants.USER_ROLE;
         return new UserResponseDto
         {
             Id = user.Id,
@@ -221,7 +250,11 @@ public class AuthService(
             Email = user.Email,
             ProfilePicture = _cloudinaryService.GetFullImageUrl(user.UserProfile?.ProfilePicture ?? string.Empty),
             Phone = user.UserProfile?.Phone ?? string.Empty,
-            Role = userRole,
+            Address = user.UserProfile?.Address ?? string.Empty,
+            Job = user.UserProfile?.Job ?? string.Empty,
+            Dpi = user.UserProfile?.Dpi ?? string.Empty,
+            Income = user.UserProfile?.Income ?? 0,
+            Role = RoleConstants.ToJwtRole(dbRole),
             Status = user.Status,
             IsEmailVerified = user.UserEmail?.EmailVerified ?? false,
             CreatedAt = user.CreatedAt,
@@ -231,13 +264,58 @@ public class AuthService(
 
     private UserDetailsDto MapToUserDetailsDto(User user)
     {
+        var dbRole = user.UserRoles.FirstOrDefault()?.Role?.Name ?? RoleConstants.USER_ROLE;
         return new UserDetailsDto
         {
             Id = user.Id,
             Username = user.UserName,
             ProfilePicture = _cloudinaryService.GetFullImageUrl(user.UserProfile?.ProfilePicture ?? string.Empty),
-            Role = user.UserRoles.FirstOrDefault()?.Role?.Name ?? RoleConstants.USER_ROLE
+            Role = RoleConstants.ToJwtRole(dbRole),
         };
+    }
+
+    public async Task<UserResponseDto> UpdateMyProfileAsync(string userId, UpdateProfileDto dto)
+    {
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new ArgumentException("Invalid userId", nameof(userId));
+
+        var user = await userRepository.GetByIdAsync(userId);
+        user.Name = dto.Name.Trim();
+        if (user.UserProfile == null)
+            throw new InvalidOperationException("Perfil de usuario no encontrado");
+
+        user.UserProfile.Address = dto.Address?.Trim() ?? string.Empty;
+        user.UserProfile.Job = dto.Job?.Trim() ?? string.Empty;
+        user.UserProfile.Income = dto.Income;
+        user.UpdatedAt = DateTime.UtcNow;
+
+        await userRepository.UpdateUserAsync(user);
+        return MapToUserResponseDto(await userRepository.GetByIdAsync(userId));
+    }
+
+    public async Task<UserResponseDto> UpdateProfilePictureAsync(string userId, UploadProfilePictureDto dto)
+    {
+        if (string.IsNullOrWhiteSpace(userId))
+            throw new ArgumentException("Invalid userId", nameof(userId));
+
+        var user = await userRepository.GetByIdAsync(userId)
+            ?? throw new InvalidOperationException("Usuario no encontrado");
+
+        if (user.UserProfile == null)
+            throw new InvalidOperationException("Perfil de usuario no encontrado");
+
+        var (isValid, errorMessage) = FileValidator.ValidateImage(dto.ProfilePicture);
+        if (!isValid)
+            throw new BusinessException(ErrorCodes.INVALID_FILE_FORMAT, errorMessage ?? "Archivo inválido");
+
+        var fileName = FileValidator.GenerateSecureFileName(dto.ProfilePicture.FileName);
+        var imageUrl = await _cloudinaryService.UploadImageAsync(dto.ProfilePicture, fileName);
+
+        user.UserProfile.ProfilePicture = imageUrl;
+        user.UpdatedAt = DateTime.UtcNow;
+
+        await userRepository.UpdateUserAsync(user);
+        return MapToUserResponseDto(await userRepository.GetByIdAsync(userId));
     }
 
     public async Task<EmailResponseDto> VerifyEmailAsync(VerifyEmailDto verifyEmailDto)
@@ -248,7 +326,7 @@ public class AuthService(
             return new EmailResponseDto
             {
                 Success = false,
-                Message = "Invalid or expired verification token"
+                Message = "Token de verificación inválido o expirado"
             };
         }
 
@@ -381,6 +459,8 @@ public class AuthService(
             logger.LogError(ex, "Failed to send password reset email to {Email}", user.Email);
         }
 
+        await notificationClient.NotifyPasswordResetRequestedAsync(user.Id, user.Email);
+
         return new EmailResponseDto
         {
             Success = true,
@@ -410,6 +490,8 @@ public class AuthService(
         await userRepository.UpdateUserAsync(user);
 
         logger.LogInformation("Password reset successfully for user {Username}", user.UserName);
+
+        await notificationClient.NotifyPasswordChangedAsync(user.Id, user.Email, user.UserName);
 
         return new EmailResponseDto
         {

@@ -1,5 +1,3 @@
-// src/modules/admin/accountTypes/pages/AccountTypes.jsx
-
 import { useEffect, useState } from 'react';
 
 import {

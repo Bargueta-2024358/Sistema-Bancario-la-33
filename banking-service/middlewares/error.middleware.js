@@ -49,11 +49,11 @@ const errorHandler = (err, req, res, next) => {
     });
   }
 
-  if (err.statusCode) {
-    return res.status(err.statusCode).json({
+  if (err.name === 'BankingError' || err.statusCode) {
+    return res.status(err.statusCode || 400).json({
       success: false,
       message: err.message,
-      error: err.code || 'CUSTOM_ERROR',
+      error: err.code || 'BANKING_ERROR',
     });
   }
 

@@ -15,24 +15,19 @@ export const useSaveCurrency = () => {
     data,
     id = null
   ) => {
-    // EL BACKEND USA CATÁLOGO MAESTRO
-    // SOLO NECESITA EL CODE
+    // El backend completa nombre y símbolo desde su catálogo.
 
     const payload = {
-      code:
-        data.code?.toUpperCase(),
+      code: data.code?.toUpperCase()?.trim(),
+      name: data.name?.trim(),
+      symbol: data.symbol?.trim(),
     };
 
     if (id) {
-      return await updateCurrency(
-        id,
-        payload
-      );
+      return await updateCurrency(id, payload);
     }
 
-    return await createCurrency(
-      payload
-    );
+    return await createCurrency(payload);
   };
 
   return {

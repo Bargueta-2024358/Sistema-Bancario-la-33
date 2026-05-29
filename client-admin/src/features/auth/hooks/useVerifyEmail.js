@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
-import { verifyEmail as verifyEmailRequest } from '../../../shared/api';
+import { verifyEmail as verifyEmailRequest } from '../../../shared/api/auth';
 import { showError, showSuccess } from '../../../shared/utils/toast.js';
 
-// Evita múltiples requests en React StrictMode (montaje doble).
 const verifyPromiseByToken = new Map();
 const verifyResultByToken = new Map();
 const toastShownByToken = new Map();
-const finishCalledByToken = new Map();
 
 export const useVerifyEmail = (token, onSuccess) => {
   const [status, setStatus] = useState('loading');
@@ -17,32 +15,16 @@ export const useVerifyEmail = (token, onSuccess) => {
 
     const run = async () => {
       if (!token) {
-        setStatus('error');
-        setMessage('Token inválido.');
-        if (!toastShownByToken.get('invalid-token')) {
-          showError('Token inválido.');
-          toastShownByToken.set('invalid-token', true);
-        }
-        if (!finishCalledByToken.get('invalid-token')) {
-          finishCalledByToken.set('invalid-token', true);
-          onSuccess && onSuccess();
+        const errorMessage = 'No se encontró el enlace de verificación. Usa el formulario para confirmar tu correo.';
+        if (isMounted) {
+          setStatus('error');
+          setMessage(errorMessage);
         }
         return;
       }
 
-      // Si ya se resolvió previamente, reusar resultado.
       const cached = verifyResultByToken.get(token);
       if (cached) {
-        if (!toastShownByToken.get(token)) {
-          toastShownByToken.set(token, true);
-          cached.status === 'success'
-            ? showSuccess('¡Correo verificado correctamente!')
-            : showError(cached.message);
-        }
-        if (!finishCalledByToken.get(token)) {
-          finishCalledByToken.set(token, true);
-          onSuccess && onSuccess();
-        }
         if (isMounted) {
           setStatus(cached.status);
           setMessage(cached.message);
@@ -50,35 +32,30 @@ export const useVerifyEmail = (token, onSuccess) => {
         return;
       }
 
-      // Si ya hay un request en curso para este token, reusar la promesa.
       let promise = verifyPromiseByToken.get(token);
       if (!promise) {
         promise = verifyEmailRequest(token)
           .then((res) => {
-            if (res.status === 200) {
+            if (res?.success) {
               const successMessage =
-                'Tu correo ha sido verificado correctamente. Serás redirigido al login...';
-              verifyResultByToken.set(token, {
-                status: 'success',
-                message: successMessage,
-              });
-              return { status: 'success', message: successMessage };
+                'Tu cuenta está activa. En unos segundos te llevaremos al inicio de sesión.';
+              const result = { status: 'success', message: successMessage };
+              verifyResultByToken.set(token, result);
+              return result;
             }
-
-            const errorMessage = 'El enlace ha expirado o no es válido.';
-            verifyResultByToken.set(token, {
-              status: 'error',
-              message: errorMessage,
-            });
-            return { status: 'error', message: errorMessage };
+            const errorMessage =
+              res?.message || 'El enlace ha expirado o no es válido. Solicita uno nuevo.';
+            const result = { status: 'error', message: errorMessage };
+            verifyResultByToken.set(token, result);
+            return result;
           })
-          .catch(() => {
-            const errorMessage = 'El enlace ha expirado o no es válido.';
-            verifyResultByToken.set(token, {
-              status: 'error',
-              message: errorMessage,
-            });
-            return { status: 'error', message: errorMessage };
+          .catch((err) => {
+            const errorMessage =
+              err.response?.data?.message ||
+              'El enlace ha expirado o no es válido. Solicita uno nuevo.';
+            const result = { status: 'error', message: errorMessage };
+            verifyResultByToken.set(token, result);
+            return result;
           })
           .finally(() => {
             verifyPromiseByToken.delete(token);
@@ -96,14 +73,12 @@ export const useVerifyEmail = (token, onSuccess) => {
 
       if (!toastShownByToken.get(token)) {
         toastShownByToken.set(token, true);
-        result.status === 'success'
-          ? showSuccess('¡Correo verificado correctamente!')
-          : showError(result.message);
-      }
-
-      if (!finishCalledByToken.get(token)) {
-        finishCalledByToken.set(token, true);
-        onSuccess && onSuccess();
+        if (result.status === 'success') {
+          showSuccess('¡Correo verificado correctamente!');
+          onSuccess?.();
+        } else {
+          showError(result.message);
+        }
       }
     };
 

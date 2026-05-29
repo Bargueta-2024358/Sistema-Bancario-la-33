@@ -102,6 +102,34 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
             .AnyAsync(u => EF.Functions.ILike(u.UserName, username));
     }
 
+    public async Task<bool> ExistsByPhoneAsync(string phone)
+    {
+        var normalized = (phone ?? string.Empty).Trim();
+        return await context.UserProfiles.AnyAsync(p =>
+            p.Phone != null &&
+            p.Phone.Replace(" ", "").ToLower() == normalized.Replace(" ", "").ToLower());
+    }
+
+    public async Task<bool> ExistsByDpiAsync(string dpi)
+    {
+        var normalized = (dpi ?? string.Empty).Trim();
+        if (string.IsNullOrWhiteSpace(normalized)) return false;
+        return await context.UserProfiles.AnyAsync(p =>
+            p.Dpi != null &&
+            p.Dpi.Replace(" ", "").ToLower() == normalized.Replace(" ", "").ToLower());
+    }
+
+    public async Task<bool> ExistsByFullNameAsync(string name, string surname)
+    {
+        var normalizedName = (name ?? string.Empty).Trim();
+        var normalizedSurname = (surname ?? string.Empty).Trim();
+        return await context.Users.AnyAsync(u =>
+            u.Name != null &&
+            u.SurName != null &&
+            u.Name.Replace(" ", "").ToLower() == normalizedName.Replace(" ", "").ToLower() &&
+            u.SurName.Replace(" ", "").ToLower() == normalizedSurname.Replace(" ", "").ToLower());
+    }
+
     public async Task UpdateUserRolesAsync(string userId, string roleId)
     {
         // Remove existing user-role associations
@@ -125,4 +153,14 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
         await context.SaveChangesAsync();
     }
 
+    public async Task<IReadOnlyList<User>> GetAllAsync()
+    {
+        return await context.Users
+            .Include(u => u.UserProfile)
+            .Include(u => u.UserEmail)
+            .Include(u => u.UserRoles)
+                .ThenInclude(ur => ur.Role)
+            .OrderByDescending(u => u.CreatedAt)
+            .ToListAsync();
+    }
 }

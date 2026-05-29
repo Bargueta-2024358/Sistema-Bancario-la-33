@@ -33,9 +33,14 @@ export const useProductStore = create(
       } catch (error) {
         console.error(error);
 
+        const message =
+          error.response?.data?.message ||
+          (error.response?.status === 429
+            ? 'Demasiadas peticiones al servicio de productos. Espera un momento e intenta de nuevo.'
+            : 'Error al obtener productos');
+
         set({
-          error:
-            'Error al obtener productos',
+          error: message,
           loading: false,
         });
       }
@@ -56,8 +61,7 @@ export const useProductStore = create(
             payload
           );
 
-        const newProduct =
-          res?.data;
+        const newProduct = res?.data ?? res;
 
         set({
           products: [

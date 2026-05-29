@@ -158,18 +158,26 @@ export const Currencies = () => {
 
                 {currency.isActive ? (
                   <button
-                    onClick={() =>
-                      deactivateCurrency(currency._id)
-                    }
+                    onClick={async () => {
+                      try {
+                        await deactivateCurrency(currency._id);
+                      } catch (err) {
+                        showError(err.response?.data?.message || 'No se pudo desactivar');
+                      }
+                    }}
                     className="flex-1 rounded-2xl bg-[#e7b7ac] py-3 text-[#6b2d22] transition hover:opacity-90"
                   >
                     Desactivar
                   </button>
                 ) : (
                   <button
-                    onClick={() =>
-                      activateCurrency(currency._id)
-                    }
+                    onClick={async () => {
+                      try {
+                        await activateCurrency(currency._id);
+                      } catch (err) {
+                        showError(err.response?.data?.message || 'No se pudo activar');
+                      }
+                    }}
                     className="flex-1 rounded-2xl bg-[#fada28] py-3 font-semibold text-[#3f3528] transition hover:opacity-90"
                   >
                     Activar

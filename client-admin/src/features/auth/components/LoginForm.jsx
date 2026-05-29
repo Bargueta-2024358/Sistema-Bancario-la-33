@@ -3,7 +3,7 @@ import { useAuthStore } from '../store/authStore.js';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-export const LoginForm = ({ onForgot, onRegister }) => {
+export const LoginForm = ({ onForgot }) => {
   const navigate = useNavigate();
   const login = useAuthStore((state) => state.login);
   const loading = useAuthStore((state) => state.loading);
@@ -18,8 +18,9 @@ export const LoginForm = ({ onForgot, onRegister }) => {
   const onSubmit = async (data) => {
     const res = await login(data);
     if (res.success) {
-      navigate('/dashboard');
-      toast.success('¡Bienvenido a Kinal Sports Admin!', { duration: 2000 });
+      const isAdmin = res.role === 'ADMIN_ROLE' || res.role === 'ADMIN';
+      navigate(isAdmin ? '/admin' : '/client');
+      toast.success(isAdmin ? 'Bienvenido — Panel Admin' : 'Bienvenido — Banca en línea', { duration: 2000 });
     }
   };
 
@@ -27,20 +28,17 @@ export const LoginForm = ({ onForgot, onRegister }) => {
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-5'>
       <div className='mb-4'>
         <label htmlFor='emailOrUsername' className='block text-sm font-medium text-[#5f5342] mb-2'>
-          
+          Correo o usuario
         </label>
-        <div className='relative'>
-          <span className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#b3a58a] text-lg'>✉️</span>
-          <input
-            type='text'
-            id='emailOrUsername'
-            placeholder='Correo electrónico o username'
-            className='w-full rounded-2xl border border-[#e6dccd] bg-[#ffffff] py-3 pl-12 pr-4 text-sm text-[#3f3528] shadow-[inset_0_1px_3px_rgba(0,0,0,0.08)] focus:border-[#fada28] focus:outline-none focus:ring-2 focus:ring-[#fada28]/30'
-            {...register('emailOrUsername', {
-              required: 'El email o username es obligatorio',
-            })}
-          />
-        </div>
+        <input
+          type='text'
+          id='emailOrUsername'
+          placeholder='Correo electrónico o username'
+          className='w-full rounded-2xl border border-[#e6dccd] bg-[#ffffff] py-3 px-4 text-sm text-[#3f3528] shadow-[inset_0_1px_3px_rgba(0,0,0,0.08)] focus:border-[#fada28] focus:outline-none focus:ring-2 focus:ring-[#fada28]/30'
+          {...register('emailOrUsername', {
+            required: 'El email o username es obligatorio',
+          })}
+        />
         {errors.emailOrUsername && (
           <p className='text-red-600 text-xs mt-2'>{errors.emailOrUsername.message}</p>
         )}
@@ -48,20 +46,17 @@ export const LoginForm = ({ onForgot, onRegister }) => {
 
       <div>
         <label htmlFor='password' className='block text-sm font-medium text-[#5f5342] mb-2'>
-          
+          Contraseña
         </label>
-        <div className='relative'>
-          <span className='pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-[#b3a58a] text-lg'>🔒</span>
-          <input
-            type='password'
-            id='password'
-            placeholder='Contraseña'
-            className='w-full rounded-2xl border border-[#e6dccd] bg-[#ffffff] py-3 pl-12 pr-4 text-sm text-[#3f3528] shadow-[inset_0_1px_3px_rgba(0,0,0,0.08)] focus:border-[#fada28] focus:outline-none focus:ring-2 focus:ring-[#fada28]/30'
-            {...register('password', {
-              required: 'La contraseña es obligatoria',
-            })}
-          />
-        </div>
+        <input
+          type='password'
+          id='password'
+          placeholder='Contraseña'
+          className='w-full rounded-2xl border border-[#e6dccd] bg-[#ffffff] py-3 px-4 text-sm text-[#3f3528] shadow-[inset_0_1px_3px_rgba(0,0,0,0.08)] focus:border-[#fada28] focus:outline-none focus:ring-2 focus:ring-[#fada28]/30'
+          {...register('password', {
+            required: 'La contraseña es obligatoria',
+          })}
+        />
         {errors.password && (
           <p className='text-red-600 text-xs mt-2'>{errors.password.message}</p>
         )}
@@ -69,14 +64,7 @@ export const LoginForm = ({ onForgot, onRegister }) => {
 
       {error && <p className='text-red-600 text-sm text-center'>{error}</p>}
 
-      <div className='flex items-center justify-between text-sm text-[#5f5342]'>
-        <button
-          type='button'
-          onClick={onRegister}
-          className='text-[#daa520] font-medium hover:underline'
-        >
-          Crea tu cuenta
-        </button>
+      <div className='flex flex-wrap items-center justify-end gap-2 text-sm text-[#5f5342]'>
         <button
           type='button'
           onClick={onForgot}

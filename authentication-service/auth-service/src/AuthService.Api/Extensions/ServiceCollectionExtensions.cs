@@ -25,6 +25,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IJwtTokenService, JwtTokenService>();
         services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<ICloudinaryService, CloudinaryService>();
+        services.AddHttpClient<INotificationClient, NotificationClient>();
 
         services.AddHealthChecks();
         

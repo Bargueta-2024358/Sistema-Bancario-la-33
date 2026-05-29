@@ -1,22 +1,20 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { UserCircleIcon } from '@heroicons/react/24/outline';
 import { useAuthStore } from '../../../features/auth/store/authStore.js';
 
 export const AvatarUser = () => {
   const { user, logout } = useAuthStore();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-
   const navigate = useNavigate();
 
-  const toggleMenu = () => setOpen((prev) => !prev);
+  const isAdmin = user?.role === 'ADMIN_ROLE' || user?.role === 'ADMIN';
+  const home = isAdmin ? '/admin' : '/client';
+  const profile = isAdmin ? '/admin/users' : '/client/profile';
 
   useEffect(() => {
     function handleClickOutside(e) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setOpen(false);
-      }
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setOpen(false);
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -31,48 +29,37 @@ export const AvatarUser = () => {
   const initials = user?.username?.[0]?.toUpperCase() || 'A';
 
   return (
-    <div className='relative' ref={dropdownRef}>
+    <div className="relative" ref={dropdownRef}>
       <button
-        type='button'
-        onClick={toggleMenu}
-        className='flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text)] transition hover:bg-[var(--bg-hover)]'
+        type="button"
+        onClick={() => setOpen((p) => !p)}
+        className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-card)]"
       >
         {avatarSrc ? (
-          <img
-            src={avatarSrc}
-            alt={user?.username}
-            className='h-10 w-10 rounded-full object-cover'
-          />
+          <img src={avatarSrc} alt="" className="h-10 w-10 rounded-full object-cover" />
         ) : (
-          <span className='flex h-10 w-10 items-center justify-center rounded-full bg-[var(--accent)] text-[#0d1f1e] font-semibold uppercase'>
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#fada28] text-[#3f3528] font-semibold">
             {initials}
           </span>
         )}
       </button>
-
       {open && (
-        <div className='absolute right-0 mt-2 w-52 rounded-3xl border border-[var(--border)] bg-[var(--bg-card)] shadow-[var(--shadow-md)] backdrop-blur-xl z-50'>
-          <div className='px-4 py-4 border-b border-[var(--border)]'>
-            <p className='font-semibold text-[var(--text-h)]'>{user?.username}</p>
-            <p className='text-sm text-[var(--text-muted)] truncate'>{user?.email}</p>
+        <div className="absolute right-0 mt-2 w-52 rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] shadow-lg z-50">
+          <div className="px-4 py-3 border-b border-[var(--border)]">
+            <p className="font-semibold text-[var(--text-h)]">{user?.username}</p>
+            <p className="text-xs text-[var(--text-muted)]">{isAdmin ? 'Administrador' : 'Cliente'}</p>
           </div>
-
-          <ul className='p-2 text-sm text-[var(--text)]'>
+          <ul className="p-2 text-sm">
             <li>
-              <Link to='/dashboard' className='block w-full rounded-2xl px-3 py-2 transition hover:bg-[var(--bg-hover)]'>
-                Dashboard
+              <Link to={home} className="block rounded-xl px-3 py-2 hover:bg-[#efe4d3]">Inicio</Link>
+            </li>
+            <li>
+              <Link to={profile} className="block rounded-xl px-3 py-2 hover:bg-[#efe4d3]">
+                {isAdmin ? 'Usuarios' : 'Perfil'}
               </Link>
             </li>
             <li>
-              <Link to='/dashboard/users' className='block w-full rounded-2xl px-3 py-2 transition hover:bg-[var(--bg-hover)]'>
-                Usuarios
-              </Link>
-            </li>
-            <li>
-              <button
-                onClick={handleLogout}
-                className='mt-1 w-full rounded-2xl px-3 py-2 text-left text-rose-400 transition hover:bg-rose-500/10'
-              >
+              <button type="button" onClick={handleLogout} className="w-full text-left rounded-xl px-3 py-2 text-red-700 hover:bg-red-50">
                 Cerrar sesión
               </button>
             </li>

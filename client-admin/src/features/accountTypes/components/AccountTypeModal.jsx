@@ -1,5 +1,3 @@
-// src/modules/admin/accountTypes/components/AccountTypeModal.jsx
-
 import { useEffect } from 'react';
 
 import { useForm } from 'react-hook-form';
@@ -9,6 +7,9 @@ import { Modal } from '../../../shared/components/ui/Modal';
 import { Button } from '../../../shared/components/ui/Button';
 
 import { Input } from '../../../shared/components/ui/Input';
+import { Select } from '../../../shared/components/ui/Select';
+
+const ACCOUNT_TYPE_NAMES = ['Ahorro', 'Monetaria', 'Crédito', 'Inversión'];
 
 import { Spinner } from '../../auth/components/Spinner';
 
@@ -59,11 +60,17 @@ export const AccountTypeModal = ({
   ]);
 
   const onSubmit = async (data) => {
+    const payload = {
+      name: data.name,
+      description: data.description || '',
+      interestRate: Number(data.interestRate),
+    };
+
     try {
       if (accountType?._id) {
         await updateAccountType(
           accountType._id,
-          data
+          payload
         );
 
         showSuccess(
@@ -71,7 +78,7 @@ export const AccountTypeModal = ({
         );
       } else {
         await createAccountType(
-          data
+          payload
         );
 
         showSuccess(
@@ -85,11 +92,11 @@ export const AccountTypeModal = ({
     } catch (error) {
       console.error(error);
 
-      showError(
-        error?.response?.data
-          ?.message ||
-          'Error al guardar tipo de cuenta'
-      );
+      const apiErrors = error?.response?.data?.errors;
+      const message = Array.isArray(apiErrors)
+        ? apiErrors.map((e) => e.message).join(', ')
+        : error?.response?.data?.message || 'Error al guardar tipo de cuenta';
+      showError(message);
     }
   };
 
@@ -112,17 +119,20 @@ export const AccountTypeModal = ({
       >
 
         {/* NAME */}
-        <Input
-          label="Nombre"
-          placeholder="Ej. Ahorro"
-          error={
-            errors.name?.message
-          }
+        <Select
+          label="Tipo de cuenta"
+          error={errors.name?.message}
           {...register('name', {
-            required:
-              'El nombre es requerido',
+            required: 'El tipo es requerido',
           })}
-        />
+        >
+          <option value="">Selecciona un tipo</option>
+          {ACCOUNT_TYPE_NAMES.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </Select>
 
         {/* DESCRIPTION */}
         <Input

@@ -41,7 +41,7 @@ export const ExchangeRateModal = ({
     });
   }, [exchangeRate, isOpen, reset]);
 
-  // ESC para cerrar (EVITA el “me quedé atrapado”)
+  // Permite cerrar el modal con Escape.
   useEffect(() => {
     if (!isOpen) return;
 
@@ -55,12 +55,18 @@ export const ExchangeRateModal = ({
   }, [isOpen, onClose]);
 
   const onSubmit = async (data) => {
+    const payload = {
+      fromCurrency: data.fromCurrency,
+      toCurrency: data.toCurrency,
+      rate: Number(data.rate),
+    };
+
     try {
       if (exchangeRate?._id) {
-        await updateExchangeRate(exchangeRate._id, data);
+        await updateExchangeRate(exchangeRate._id, payload);
         showSuccess('Tasa actualizada');
       } else {
-        await createExchangeRate(data);
+        await createExchangeRate(payload);
         showSuccess('Tasa creada');
       }
 
@@ -68,10 +74,11 @@ export const ExchangeRateModal = ({
       onClose();
     } catch (error) {
       console.error(error);
-      showError(
-        error?.response?.data?.message ||
-        'Error al guardar tasa'
-      );
+      const apiErrors = error?.response?.data?.errors;
+      const message = Array.isArray(apiErrors)
+        ? apiErrors.map((e) => e.message).join(', ')
+        : error?.response?.data?.message || 'Error al guardar tasa';
+      showError(message);
     }
   };
 

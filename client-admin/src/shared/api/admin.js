@@ -1,66 +1,50 @@
 import { axiosAdmin } from './api';
-
-// RESTAURANTES
-
-// OBTENER TODOS
 export const getRestaurants = async () => {
   const { data } = await axiosAdmin.get('/restaurants');
   return data;
 };
 
-// OBTENER UNO
 export const getRestaurantById = async (id) => {
   const { data } = await axiosAdmin.get(`/restaurants/${id}`);
   return data;
 };
 
-// CREAR
 export const createRestaurant = async (data) => {
   return await axiosAdmin.post('/restaurants', data);
 };
 
-// ACTUALIZAR
 export const updateRestaurant = async (id, data) => {
   return await axiosAdmin.put(`/restaurants/${id}`, data);
 };
 
-// ELIMINAR
 export const deleteRestaurant = async (id) => {
   return await axiosAdmin.delete(`/restaurants/${id}`);
 };
 
-// PEDIDOS
-
-// CREAR ORDEN
 export const createOrder = async (data) => {
   return await axiosAdmin.post('/orders', data);
 };
 
-// OBTENER TODAS (ADMIN)
 export const getOrders = async () => {
   const { data } = await axiosAdmin.get('/orders');
   return data;
 };
 
-// OBTENER MIS ÓRDENES (USER)
 export const getMyOrders = async () => {
   const { data } = await axiosAdmin.get('/orders/my-orders');
   return data;
 };
 
-// OBTENER POR ID
 export const getOrderById = async (id) => {
   const { data } = await axiosAdmin.get(`/orders/${id}`);
   return data;
 };
 
-// CONFIRMAR ORDEN
 export const confirmOrder = async (id) => {
   const { data } = await axiosAdmin.patch(`/orders/${id}/confirm`);
   return data;
 };
 
-// ACTUALIZAR STATUS
 export const updateOrderStatus = async (id, data) => {
   const { data: res } = await axiosAdmin.patch(
     `/orders/${id}/status`,
@@ -69,29 +53,24 @@ export const updateOrderStatus = async (id, data) => {
   return res;
 };
 
-// CANCELAR ORDEN
 export const cancelOrder = async (id) => {
   const { data } = await axiosAdmin.patch(`/orders/${id}/cancel`);
   return data;
 };
 
-// =========================
-// PRODUCTS
-// =========================
-
-// GET ALL
-export const getProducts = async () => {
-  const { data } = await axiosAdmin.get('/products');
-  return data;
+export const getProducts = async (params = { limit: 100 }) => {
+  const { data } = await axiosAdmin.get('/products', { params });
+  return {
+    ...data,
+    data: data?.data ?? [],
+  };
 };
 
-// GET BY ID
 export const getProductById = async (id) => {
   const { data } = await axiosAdmin.get(`/products/${id}`);
   return data;
 };
 
-// CREATE
 export const createProduct = async (payload) => {
   const { data } = await axiosAdmin.post(
     '/products',
@@ -101,7 +80,6 @@ export const createProduct = async (payload) => {
   return data;
 };
 
-// UPDATE
 export const updateProduct = async (
   id,
   payload
@@ -114,7 +92,6 @@ export const updateProduct = async (
   return data;
 };
 
-// ACTIVATE
 export const activateProduct = async (
   id
 ) => {
@@ -125,7 +102,6 @@ export const activateProduct = async (
   return data;
 };
 
-// DEACTIVATE
 export const deactivateProduct = async (
   id
 ) => {
@@ -136,11 +112,12 @@ export const deactivateProduct = async (
   return data;
 };
 
-// CURRENCIES
-
-export const getCurrencies = async () => {
-  const { data } = await axiosAdmin.get('/currencies');
-  return data;
+export const getCurrencies = async (params = { limit: 100 }) => {
+  const { data } = await axiosAdmin.get('/currencies', { params });
+  return {
+    ...data,
+    data: data?.data ?? data?.currencies ?? [],
+  };
 };
 
 export const getCurrencyById = async (id) => {
@@ -149,11 +126,13 @@ export const getCurrencyById = async (id) => {
 };
 
 export const createCurrency = async (payload) => {
-  return await axiosAdmin.post('/currencies', payload);
+  const { data } = await axiosAdmin.post('/currencies', payload);
+  return data;
 };
 
 export const updateCurrency = async (id, payload) => {
-  return await axiosAdmin.put(`/currencies/${id}`, payload);
+  const { data } = await axiosAdmin.put(`/currencies/${id}`, payload);
+  return data;
 };
 
 export const activateCurrency = async (
@@ -178,19 +157,13 @@ export const deactivateCurrency = async (
   return data;
 };
 
-//
-// ACCOUNT TYPES
-//
-
-export const getAccountTypes =
-  async () => {
-    const { data } =
-      await axiosAdmin.get(
-        '/accountTypes'
-      );
-
-    return data;
+export const getAccountTypes = async (params = { limit: 100 }) => {
+  const { data } = await axiosAdmin.get('/accountTypes', { params });
+  return {
+    ...data,
+    data: data?.data ?? data?.accountTypes ?? [],
   };
+};
 
 export const getAccountTypeById =
   async (id) => {
@@ -244,19 +217,13 @@ export const deactivateAccountType =
     return data;
   };
 
-//
-// EXCHANGE RATES
-//
-
-export const getExchangeRates =
-  async () => {
-    const { data } =
-      await axiosAdmin.get(
-        '/exchangeRates'
-      );
-
-    return data;
+export const getExchangeRates = async (params = { limit: 100 }) => {
+  const { data } = await axiosAdmin.get('/exchangeRates', { params });
+  return {
+    ...data,
+    data: data?.data ?? data?.exchangeRates ?? [],
   };
+};
 
 export const createExchangeRate =
   async (payload) => {
@@ -299,3 +266,10 @@ export const deactivateExchangeRate =
 
     return data;
   };
+
+export const convertCurrency = async ({ fromCurrency, toCurrency, amount, preferLocal = false }) => {
+  const { data } = await axiosAdmin.get('/currencies/convert', {
+    params: { fromCurrency, toCurrency, amount, preferLocal },
+  });
+  return data.data || data;
+};

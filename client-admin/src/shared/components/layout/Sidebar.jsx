@@ -37,10 +37,6 @@ export const Sidebar = () => {
         {/* LOGO */}
         <div className="mb-10 flex items-center gap-3">
 
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#fada28] text-[#3f3528] font-bold shadow-md">
-            33
-          </div>
-
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-[#8b7a65]">
               Admin

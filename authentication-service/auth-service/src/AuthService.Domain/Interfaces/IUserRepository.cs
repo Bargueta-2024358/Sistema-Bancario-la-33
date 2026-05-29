@@ -13,7 +13,11 @@ public interface IUserRepository
     Task<User?> GetByPasswordResetTokenAsync(string token);
     Task<bool> ExistsByEmailAsync(string email);
     Task<bool> ExistsByUsernameAsync(string username);
+    Task<bool> ExistsByPhoneAsync(string phone);
+    Task<bool> ExistsByDpiAsync(string dpi);
+    Task<bool> ExistsByFullNameAsync(string name, string surname);
     Task<User> UpdateUserAsync(User user);
     Task<bool> DeleteUserAsync(string id);
     Task UpdateUserRolesAsync(string userId, string roleId);
+    Task<IReadOnlyList<User>> GetAllAsync();
 }

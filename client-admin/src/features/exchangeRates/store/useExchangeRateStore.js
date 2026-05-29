@@ -25,15 +25,19 @@ export const useExchangeRateStore =
             await getExchangeRates();
 
           set({
-            exchangeRates:
-              res.data,
+            exchangeRates: res?.data ?? res?.exchangeRates ?? [],
             loading: false,
+            error: null,
           });
         } catch (error) {
+          const apiErrors = error.response?.data?.errors;
+          const message = Array.isArray(apiErrors)
+            ? apiErrors.map((e) => e.message).join(', ')
+            : error.response?.data?.message || 'Error al obtener tasas de cambio';
+
           set({
-            error:
-              error.response?.data
-                ?.message,
+            error: message,
+            exchangeRates: [],
             loading: false,
           });
         }
@@ -54,15 +58,12 @@ export const useExchangeRateStore =
             await getExchangeRates();
 
           set({
-            exchangeRates:
-              res.data,
+            exchangeRates: res?.data ?? res?.exchangeRates ?? [],
             loading: false,
           });
         } catch (error) {
           set({
-            error:
-              error.response?.data
-                ?.message,
+            error: error.response?.data?.message || 'Error al crear tasa',
             loading: false,
           });
 
@@ -89,15 +90,12 @@ export const useExchangeRateStore =
             await getExchangeRates();
 
           set({
-            exchangeRates:
-              res.data,
+            exchangeRates: res?.data ?? res?.exchangeRates ?? [],
             loading: false,
           });
         } catch (error) {
           set({
-            error:
-              error.response?.data
-                ?.message,
+            error: error.response?.data?.message || 'Error al actualizar tasa',
             loading: false,
           });
 
@@ -115,8 +113,7 @@ export const useExchangeRateStore =
           await getExchangeRates();
 
         set({
-          exchangeRates:
-            res.data,
+          exchangeRates: res?.data ?? res?.exchangeRates ?? [],
         });
       },
 
@@ -130,8 +127,7 @@ export const useExchangeRateStore =
           await getExchangeRates();
 
         set({
-          exchangeRates:
-            res.data,
+          exchangeRates: res?.data ?? res?.exchangeRates ?? [],
         });
       },
   }));
