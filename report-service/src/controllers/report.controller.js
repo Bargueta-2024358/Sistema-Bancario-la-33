@@ -104,5 +104,4 @@ exports.getGlobalReport = async (req, res, next) => {
   }
 };
 
-// Compatibilidad ruta antigua
 exports.getUserReport = exports.getHistory;

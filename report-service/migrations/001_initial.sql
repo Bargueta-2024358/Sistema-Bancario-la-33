@@ -1,4 +1,3 @@
--- Base de datos: banco_33_reports
 CREATE TABLE IF NOT EXISTS transactions (
   id SERIAL PRIMARY KEY,
   user_id VARCHAR(64) NOT NULL,

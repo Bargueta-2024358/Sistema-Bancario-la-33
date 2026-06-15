@@ -8,7 +8,7 @@ const pool = new Pool({ connectionString });
 
 const ensureDatabase = async () => {
   const dbUrl = new URL(connectionString);
-  const targetDb = decodeURIComponent(dbUrl.pathname.replace(/^\//, ''));
+  const targetDb = decodeURIComponent(dbUrl.pathname.replace(/^\
 
   const adminUrl = new URL(connectionString);
   adminUrl.pathname = '/postgres';
