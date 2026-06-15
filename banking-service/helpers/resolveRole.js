@@ -5,7 +5,7 @@ const ROLE_MAP = {
   USER_ROLE: 'CLIENT',
 };
 
-/** JWT puede traer role como string o array si hay claims duplicados. */
+
 const resolveRole = (role) => {
   if (role == null) return '';
   if (Array.isArray(role)) {

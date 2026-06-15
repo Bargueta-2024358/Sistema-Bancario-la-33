@@ -22,7 +22,6 @@ const syncTransaction = async (payload) => {
       }),
     });
   } catch (_err) {
-    // No bloquear operación bancaria
   }
 };
 

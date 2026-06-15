@@ -12,7 +12,6 @@ const postEvent = async (path, body) => {
       body: JSON.stringify(body),
     });
   } catch (_err) {
-    // No bloquear operación bancaria
   }
 };
 
