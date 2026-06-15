@@ -15,7 +15,6 @@ export const useSaveCurrency = () => {
     data,
     id = null
   ) => {
-    // El backend completa nombre y símbolo desde su catálogo.
 
     const payload = {
       code: data.code?.toUpperCase()?.trim(),

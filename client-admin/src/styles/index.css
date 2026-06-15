@@ -1,8 +1,6 @@
 @import 'tailwindcss';
 
-/* =========================================================
-   THEME
-========================================================= */
+
 
 @theme {
   --color-primary: #fada28;
@@ -29,7 +27,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  /* ===== COLORS ===== */
+  
 
   --bg: #e7dbcb;
   --bg-card: #f4ede2;
@@ -48,11 +46,11 @@
   --danger-bg: #e7b7ac;
   --danger-text: #6b2d22;
 
-  /* ===== LAYOUT ===== */
+  
 
   --sidebar-w: 290px;
 
-  /* ===== SHADOWS ===== */
+  
 
   --shadow-sm:
     0 4px 12px rgba(0, 0, 0, 0.04);
@@ -70,9 +68,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* =========================================================
-   BASE
-========================================================= */
+
 
 html,
 body,
@@ -110,14 +106,12 @@ body {
   align-items: center;
 }
 
-/* Centrado vertical solo para el grid de inicio */
+
 .min-h-screen > main > section:last-child {
   align-self: center;
 }
 
-/* =========================================================
-   ANIMATIONS
-========================================================= */
+
 
 @keyframes fadeIn {
   from {
@@ -135,9 +129,7 @@ body {
   animation: fadeIn 0.18s ease-out;
 }
 
-/* =========================================================
-   SCROLLBAR
-========================================================= */
+
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -156,9 +148,7 @@ body {
   background: #b8a58a;
 }
 
-/* =========================================================
-   UTILITIES
-========================================================= */
+
 
 .card-premium {
   background: var(--bg-card);
@@ -218,9 +208,7 @@ body {
     0 0 0 4px rgba(250, 218, 40, 0.2);
 }
 
-/* =========================================================
-   SIDEBAR ACTIVE EFFECT
-========================================================= */
+
 
 .sidebar-active {
   background: var(--accent);

@@ -14,7 +14,6 @@ export const useProductStore = create(
     loading: false,
     error: null,
 
-    // GET
     getProducts: async () => {
       try {
         set({
@@ -46,7 +45,6 @@ export const useProductStore = create(
       }
     },
 
-    // CREATE
     createProduct: async (
       payload
     ) => {
@@ -86,7 +84,6 @@ export const useProductStore = create(
       }
     },
 
-    // UPDATE
     updateProduct: async (
       id,
       payload
@@ -132,7 +129,6 @@ export const useProductStore = create(
       }
     },
 
-    // ACTIVATE
     activateProduct: async (id) => {
       try {
         await activateProduct(id);
@@ -158,7 +154,6 @@ export const useProductStore = create(
       }
     },
 
-    // DEACTIVATE
     deactivateProduct: async (id) => {
       try {
         await deactivateProduct(id);

@@ -43,7 +43,7 @@ export const AccountTypes = () => {
   return (
       <div className="min-h-screen bg-[#e7dbcb] p-8">
 
-        {/* HEADER */}
+        {}
         <div className="mb-10 flex items-center justify-between">
 
           <div>
@@ -67,7 +67,7 @@ export const AccountTypes = () => {
           </button>
         </div>
 
-        {/* GRID */}
+        {}
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
           {accountTypes.map((accountType) => (
@@ -80,7 +80,7 @@ export const AccountTypes = () => {
               }`}
             >
 
-              {/* TOP */}
+              {}
               <div className="flex items-start justify-between">
 
                 <div>
@@ -106,7 +106,7 @@ export const AccountTypes = () => {
                 </span>
               </div>
 
-              {/* BODY */}
+              {}
               <div className="mt-6 rounded-2xl bg-white/70 p-4 border border-[#e6dccd]">
 
                 <p className="text-sm text-[#7b6b57]">
@@ -118,7 +118,7 @@ export const AccountTypes = () => {
                 </p>
               </div>
 
-              {/* ACTIONS */}
+              {}
               <div className="mt-6 flex gap-3">
 
                 <button
@@ -157,7 +157,7 @@ export const AccountTypes = () => {
           ))}
         </div>
 
-        {/* MODAL */}
+        {}
         <AccountTypeModal
           isOpen={openModal}
           onClose={() => {

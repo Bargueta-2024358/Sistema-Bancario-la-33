@@ -31,10 +31,10 @@ export const Sidebar = () => {
   return (
     <aside className="w-[var(--sidebar-w)] min-h-screen bg-[#f4ede2] border-r border-[#d9ccb8] px-5 py-6 flex flex-col justify-between">
 
-      {/* TOP */}
+      {}
       <div>
 
-        {/* LOGO */}
+        {}
         <div className="mb-10 flex items-center gap-3">
 
           <div>
@@ -48,7 +48,7 @@ export const Sidebar = () => {
           </div>
         </div>
 
-        {/* NAV */}
+        {}
         <nav className="space-y-2">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -74,7 +74,7 @@ export const Sidebar = () => {
         </nav>
       </div>
 
-      {/* BOTTOM */}
+      {}
       <button
         onClick={handleLogout}
         className="flex items-center gap-3 rounded-2xl border border-[#d9ccb8] bg-white px-4 py-3 text-sm font-medium text-[#6f604d] transition hover:bg-[#fada28]/20 hover:text-[#3f3528]"

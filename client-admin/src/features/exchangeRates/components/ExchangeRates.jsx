@@ -43,7 +43,7 @@ export const ExchangeRates = () => {
   return (
     <div className="min-h-screen bg-[#e7dbcb] p-8">
 
-      {/* HEADER */}
+      {}
       <div className="mb-10 flex items-center justify-between">
 
         <div>
@@ -67,7 +67,7 @@ export const ExchangeRates = () => {
         </button>
       </div>
 
-      {/* GRID */}
+      {}
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
         {(exchangeRates || []).map((rate) => (
@@ -80,7 +80,7 @@ export const ExchangeRates = () => {
             }`}
           >
 
-            {/* HEADER */}
+            {}
             <div className="flex items-start justify-between">
 
               <div>
@@ -104,7 +104,7 @@ export const ExchangeRates = () => {
               </span>
             </div>
 
-            {/* BODY */}
+            {}
             <div className="mt-6 rounded-2xl border border-[#e6dccd] bg-white/70 p-4">
 
               <p className="text-sm text-[#7b6b57]">
@@ -116,7 +116,7 @@ export const ExchangeRates = () => {
               </p>
             </div>
 
-            {/* ACTIONS */}
+            {}
             <div className="mt-6 flex gap-3">
 
               <button
@@ -150,7 +150,7 @@ export const ExchangeRates = () => {
         ))}
       </div>
 
-      {/* MODAL */}
+      {}
       <ExchangeRateModal
         isOpen={openModal}
         onClose={() => {

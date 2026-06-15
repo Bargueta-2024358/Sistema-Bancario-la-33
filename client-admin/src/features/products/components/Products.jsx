@@ -36,7 +36,7 @@ export const Products = () => {
   return (
     <div className="min-h-screen bg-[#e7dbcb] p-8">
 
-      {/* HEADER */}
+      {}
       <div className="mb-10 flex items-center justify-between">
 
         <div>
@@ -60,7 +60,7 @@ export const Products = () => {
         </button>
       </div>
 
-      {/* GRID */}
+      {}
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
         {products.map((product) => (
@@ -73,7 +73,7 @@ export const Products = () => {
             }`}
           >
 
-            {/* HEADER */}
+            {}
             <div className="flex items-start justify-between">
 
               <div>
@@ -97,7 +97,7 @@ export const Products = () => {
               </span>
             </div>
 
-            {/* INFO */}
+            {}
             <div className="mt-6 space-y-3">
 
               <div className="flex justify-between">
@@ -115,7 +115,7 @@ export const Products = () => {
               </div>
             </div>
 
-            {/* ACTIONS */}
+            {}
             <div className="mt-6 flex gap-3">
 
               <button
@@ -148,7 +148,7 @@ export const Products = () => {
         ))}
       </div>
 
-      {/* MODAL */}
+      {}
       <ProductModal
         isOpen={openModal}
         onClose={() => {

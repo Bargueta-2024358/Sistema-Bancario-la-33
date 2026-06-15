@@ -53,7 +53,7 @@ export const Currencies = () => {
   return (
       <div className="min-h-screen bg-[#e7dbcb] p-8">
 
-        {/* HEADER */}
+        {}
         <div className="mb-10 flex items-center justify-between">
 
           <div>
@@ -77,7 +77,7 @@ export const Currencies = () => {
           </button>
         </div>
 
-        {/* GRID */}
+        {}
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
           {currencies.map((currency) => (
@@ -90,7 +90,7 @@ export const Currencies = () => {
               }`}
             >
 
-              {/* TOP */}
+              {}
               <div className="flex items-start justify-between">
 
                 <div>
@@ -105,7 +105,7 @@ export const Currencies = () => {
 
                 <div className="flex flex-col items-end gap-2">
 
-                  {/* STATUS */}
+                  {}
                   <span
                     className={`rounded-full px-3 py-1 text-xs font-semibold ${
                       currency.isActive
@@ -116,7 +116,7 @@ export const Currencies = () => {
                     {currency.isActive ? 'Activa' : 'Inactiva'}
                   </span>
 
-                  {/* BASE */}
+                  {}
                   {currency.isBase && (
                     <span className="rounded-lg bg-white px-2 py-1 text-xs text-[#5f5342] border border-[#d9ccb8]">
                       Base
@@ -125,7 +125,7 @@ export const Currencies = () => {
                 </div>
               </div>
 
-              {/* INFO */}
+              {}
               <div className="mt-6 rounded-2xl bg-white/70 border border-[#e6dccd] p-4">
 
                 <div className="flex justify-between">
@@ -143,7 +143,7 @@ export const Currencies = () => {
                 </div>
               </div>
 
-              {/* ACTIONS */}
+              {}
               <div className="mt-6 flex gap-3">
 
                 <button
@@ -188,7 +188,7 @@ export const Currencies = () => {
           ))}
         </div>
 
-        {/* MODAL */}
+        {}
         <CurrencyModal
           isOpen={openModal}
           onClose={() => {

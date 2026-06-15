@@ -118,7 +118,7 @@ export const AccountTypeModal = ({
         className="space-y-5"
       >
 
-        {/* NAME */}
+        {}
         <Select
           label="Tipo de cuenta"
           error={errors.name?.message}
@@ -134,7 +134,7 @@ export const AccountTypeModal = ({
           ))}
         </Select>
 
-        {/* DESCRIPTION */}
+        {}
         <Input
           label="Descripción"
           placeholder="Descripción del tipo de cuenta"
@@ -147,7 +147,7 @@ export const AccountTypeModal = ({
           )}
         />
 
-        {/* INTEREST */}
+        {}
         <Input
           type="number"
           step="0.01"
@@ -172,7 +172,7 @@ export const AccountTypeModal = ({
           )}
         />
 
-        {/* ACTIONS */}
+        {}
        <div className="flex justify-end gap-3 pt-5 border-t border-[#d9ccb8]">
           <Button
             type="button"

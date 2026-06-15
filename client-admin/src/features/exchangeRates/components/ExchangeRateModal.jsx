@@ -41,7 +41,6 @@ export const ExchangeRateModal = ({
     });
   }, [exchangeRate, isOpen, reset]);
 
-  // Permite cerrar el modal con Escape.
   useEffect(() => {
     if (!isOpen) return;
 
@@ -94,7 +93,7 @@ export const ExchangeRateModal = ({
         onClick={(e) => e.stopPropagation()}
       >
 
-        {/* HEADER */}
+        {}
         <div className="border-b border-[#d9ccb8] p-6">
           <h2 className="text-2xl font-bold text-[#3f3528]">
             {exchangeRate ? 'Editar tasa' : 'Nueva tasa'}
@@ -105,7 +104,7 @@ export const ExchangeRateModal = ({
           </p>
         </div>
 
-        {/* FORM */}
+        {}
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="space-y-5 p-6"
@@ -156,7 +155,7 @@ export const ExchangeRateModal = ({
             })}
           />
 
-          {/* ACTIONS */}
+          {}
           <div className="flex justify-end gap-3 border-t border-[#d9ccb8] pt-5">
 
             <button

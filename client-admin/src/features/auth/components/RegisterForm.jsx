@@ -35,7 +35,7 @@ export const RegisterForm = ({ onSwitch, onSuccess, onConfirmEmail }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='grid gap-4 sm:grid-cols-2'>
-      {/* Nombre */}
+      {}
       <div>
         <label htmlFor='name' className='block text-sm font-medium text-[#5f5342] mb-2'>
           Nombre
@@ -50,7 +50,7 @@ export const RegisterForm = ({ onSwitch, onSuccess, onConfirmEmail }) => {
         {errors.name && <p className='text-red-600 text-xs mt-2'>{errors.name.message}</p>}
       </div>
 
-      {/* Apellido */}
+      {}
       <div>
         <label htmlFor='surname' className='block text-sm font-medium text-[#5f5342] mb-2'>
           Apellido
@@ -65,7 +65,7 @@ export const RegisterForm = ({ onSwitch, onSuccess, onConfirmEmail }) => {
         {errors.surname && <p className='text-red-600 text-xs mt-2'>{errors.surname.message}</p>}
       </div>
 
-      {/* Usuario */}
+      {}
       <div>
         <label htmlFor='username' className='block text-sm font-medium text-[#5f5342] mb-2'>
           Usuario
@@ -83,7 +83,7 @@ export const RegisterForm = ({ onSwitch, onSuccess, onConfirmEmail }) => {
         {errors.username && <p className='text-red-600 text-xs mt-2'>{errors.username.message}</p>}
       </div>
 
-      {/* Teléfono */}
+      {}
       <div>
         <label htmlFor='phone' className='block text-sm font-medium text-[#5f5342] mb-2'>
           Teléfono
@@ -104,7 +104,7 @@ export const RegisterForm = ({ onSwitch, onSuccess, onConfirmEmail }) => {
         {errors.phone && <p className='text-red-600 text-xs mt-2'>{errors.phone.message}</p>}
       </div>
 
-      {/* Email */}
+      {}
       <div>
         <label htmlFor='email' className='block text-sm font-medium text-[#5f5342] mb-2'>
           Correo electrónico
@@ -125,7 +125,7 @@ export const RegisterForm = ({ onSwitch, onSuccess, onConfirmEmail }) => {
         {errors.email && <p className='text-red-600 text-xs mt-2'>{errors.email.message}</p>}
       </div>
 
-      {/* Contraseña */}
+      {}
       <div>
         <label htmlFor='password' className='block text-sm font-medium text-[#5f5342] mb-2'>
           Contraseña
@@ -143,7 +143,7 @@ export const RegisterForm = ({ onSwitch, onSuccess, onConfirmEmail }) => {
         {errors.password && <p className='text-red-600 text-xs mt-2'>{errors.password.message}</p>}
       </div>
 
-      {/* Imagen de perfil */}
+      {}
       <div className='sm:col-span-2'>
         <label htmlFor='profilePicture' className='block text-sm font-medium text-[#5f5342] mb-2'>
           Imagen de perfil (opcional)
