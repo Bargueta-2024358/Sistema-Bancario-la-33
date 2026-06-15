@@ -3,7 +3,6 @@ import { validateJWT } from './validate-JWT.js';
 import { requireRole } from './validate-role.js';
 import { checkValidators } from './check-validators.js';
 
-// Crear tipo de cuenta Solo admin
 export const validateCreateAccountType = [
   validateJWT,
   requireRole('ADMIN_ROLE'),

@@ -8,7 +8,6 @@ import {
 import Product from './product.model.js';
 import Currency from '../currencies/currency.model.js';
 
-// Obtener todos los productos
 export const getProducts = async (req, res) => {
   try {
     const { page = 1, limit = 10, isActive = true } = req.query;
@@ -32,7 +31,6 @@ export const getProducts = async (req, res) => {
   }
 };
 
-// Obtener producto por ID
 export const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
@@ -58,12 +56,10 @@ export const getProductById = async (req, res) => {
   }
 };
 
-// Crear producto
 export const createProduct = async (req, res) => {
   try {
     const { name, description, currencyCode } = req.body;
 
-    // Buscar la moneda por código
     const currencyDoc = await Currency.findOne({ code: currencyCode });
     if (!currencyDoc) {
       return res.status(400).json({
@@ -72,7 +68,6 @@ export const createProduct = async (req, res) => {
       });
     }
 
-    // Verificar duplicados
     const existing = await Product.findOne({
       name,
       currency: currencyDoc._id,
@@ -107,7 +102,6 @@ export const createProduct = async (req, res) => {
   }
 };
 
-// Actualizar producto
 export const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -154,7 +148,6 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-// Activar - Desactivar producto
 export const changeProductStatus = async (req, res) => {
   try {
     const { id } = req.params;

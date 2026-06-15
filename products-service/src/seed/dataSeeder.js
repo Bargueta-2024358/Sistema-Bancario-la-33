@@ -34,7 +34,6 @@ export const seedProductsData = async () => {
     );
   }
 
-  // Corrige símbolos/nombres en monedas ya existentes según catálogo
   for (const [code, meta] of Object.entries(CURRENCY_CATALOG)) {
     await Currency.updateMany(
       { code },

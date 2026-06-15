@@ -6,7 +6,6 @@ import {
   updateAccountTypeStatus,
 } from './accountType.service.js';
 
-// Obtener todos
 export const getAccountTypes = async (
   req,
   res
@@ -20,7 +19,6 @@ export const getAccountTypes = async (
 
     const filters = {};
 
-    // SOLO filtrar si viene query
     if (isActive !== undefined) {
       filters.isActive =
         isActive === 'true';
@@ -50,7 +48,6 @@ export const getAccountTypes = async (
   }
 };
 
-// Obtener por ID
 export const getAccountTypeById =
   async (req, res) => {
     try {
@@ -81,7 +78,6 @@ export const getAccountTypeById =
     }
   };
 
-// Crear
 export const createAccountType =
   async (req, res) => {
     try {
@@ -114,7 +110,6 @@ export const createAccountType =
     }
   };
 
-// Actualizar
 export const updateAccountType =
   async (req, res) => {
     try {
@@ -150,7 +145,6 @@ export const updateAccountType =
     }
   };
 
-// Activar / Desactivar
 export const changeAccountTypeStatus =
   async (req, res) => {
     try {

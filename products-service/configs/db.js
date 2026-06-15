@@ -39,7 +39,6 @@ export const dbConnection = async () => {
   }
 };
 
-// Graceful shutdown handlers
 const gracefulShutdown = async (signal) => {
   console.log(`MongoDB | Received ${signal}. Closing database connection...`);
   try {
@@ -52,7 +51,6 @@ const gracefulShutdown = async (signal) => {
   }
 };
 
-// Handle different termination signals
 process.on('SIGINT', () => gracefulShutdown('SIGINT'));
 process.on('SIGTERM', () => gracefulShutdown('SIGTERM'));
-process.on('SIGUSR2', () => gracefulShutdown('SIGUSR2')); // For nodemon restarts
+process.on('SIGUSR2', () => gracefulShutdown('SIGUSR2'));

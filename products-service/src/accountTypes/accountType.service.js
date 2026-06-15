@@ -15,7 +15,6 @@ export const fetchAccountTypes =
 
     const filters = {};
 
-    // SOLO filtrar si viene definido
     if (isActive !== undefined) {
       filters.isActive =
         isActive;

@@ -1,7 +1,4 @@
-/**
- * API externa de divisas (Frankfurter - sin API key, uso académico)
- * Docs: https://www.frankfurter.app/docs/
- */
+
 const DEFAULT_BASE = 'https://api.frankfurter.app';
 
 const buildUrl = (from, to) => {

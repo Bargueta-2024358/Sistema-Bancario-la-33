@@ -34,7 +34,6 @@ export const validateJWT = (req, res, next) => {
 
     const decoded = jwt.verify(token, jwtConfig.secret, verifyOptions);
 
-    // Log para debug - remover en producción
     if (!decoded.role) {
       console.warn(
         `Token sin campo 'role' para usuario ${decoded.sub}. Payload:`,

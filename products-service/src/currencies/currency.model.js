@@ -10,7 +10,7 @@ const currencySchema = new Schema(
       unique: true,
       uppercase: true,
       trim: true,
-      index: true, // ← deja solo este
+      index: true,
     },
     name: {
       type: String,
