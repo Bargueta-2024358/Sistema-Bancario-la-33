@@ -9,7 +9,6 @@ public class RoleConstants
 
     public static readonly string[] AllowedRoles = [USER_ROLE, ADMIN_ROLE];
 
-    /// <summary>Maps DB role names to JWT claims expected by Node microservices and the React app.</summary>
     public static string ToJwtRole(string dbRole) => dbRole switch
     {
         ADMIN_ROLE => "ADMIN",

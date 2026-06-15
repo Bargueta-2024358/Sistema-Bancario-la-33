@@ -3992,11 +3992,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/AuthService.Application.csproj",
+      "projectUniqueName": "/Users/frank/Downloads/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/AuthService.Application.csproj",
       "projectName": "AuthService.Application",
-      "projectPath": "/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/AuthService.Application.csproj",
+      "projectPath": "/Users/frank/Downloads/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/AuthService.Application.csproj",
       "packagesPath": "/Users/frank/.nuget/packages/",
-      "outputPath": "/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/",
+      "outputPath": "/Users/frank/Downloads/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/frank/.nuget/NuGet/NuGet.Config"
@@ -4011,8 +4011,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Domain/AuthService.Domain.csproj": {
-              "projectPath": "/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Domain/AuthService.Domain.csproj"
+            "/Users/frank/Downloads/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Domain/AuthService.Domain.csproj": {
+              "projectPath": "/Users/frank/Downloads/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Domain/AuthService.Domain.csproj"
             }
           }
         }

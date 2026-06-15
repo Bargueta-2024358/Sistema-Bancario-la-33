@@ -24,7 +24,6 @@ public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
         var dbRole = user.UserRoles?.FirstOrDefault()?.Role?.Name ?? RoleConstants.USER_ROLE;
         var jwtRole = RoleConstants.ToJwtRole(dbRole);
 
-        // Un solo claim "role" (evita que Node reciba role como array)
         var claims = new List<Claim>
         {
             new(JwtRegisteredClaimNames.Sub, user.Id),

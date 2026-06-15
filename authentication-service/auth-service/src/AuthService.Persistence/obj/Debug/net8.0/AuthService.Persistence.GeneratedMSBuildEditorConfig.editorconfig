@@ -16,6 +16,6 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = AuthService.Persistence
-build_property.ProjectDir = /Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Persistence/
+build_property.ProjectDir = /Users/frank/Downloads/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Persistence/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

@@ -77,7 +77,6 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
 
     public async Task<User> UpdateUserAsync(User user)
     {
-        // Entity is already tracked from GetByIdAsync, just save changes
         await context.SaveChangesAsync();
         return await GetByIdAsync(user.Id);
     }
@@ -132,19 +131,17 @@ public class UserRepository(ApplicationDbContext context) : IUserRepository
 
     public async Task UpdateUserRolesAsync(string userId, string roleId)
     {
-        // Remove existing user-role associations
         var existingRoles = await context.UserRoles
             .Where(ur => ur.UserId == userId)
             .ToListAsync();
         
         context.UserRoles.RemoveRange(existingRoles);
 
-        // Add new user-role association with the existing role
         var newUserRole = new UserRole
         {
-            Id = UuidGenerator.GenerateUserId(), // Generate ID for the UserRole entry (not the Role)
+            Id = UuidGenerator.GenerateUserId(),
             UserId = userId,
-            RoleId = roleId, // Use the existing role ID from the roles table
+            RoleId = roleId,
             CreatedAt = DateTime.UtcNow,
             UpdatedAt = DateTime.UtcNow
         };

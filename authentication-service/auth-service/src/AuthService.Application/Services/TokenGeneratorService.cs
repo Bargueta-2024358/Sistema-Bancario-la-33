@@ -6,12 +6,12 @@ public static class TokenGenerator
 {
     public static string GenerateEmailVerificationToken()
     {
-        return GenerateSecureToken(32); // 32 bytes = 256 bits
+        return GenerateSecureToken(32);
     }
 
     public static string GeneratePasswordResetToken()
     {
-        return GenerateSecureToken(32); // 32 bytes = 256 bits
+        return GenerateSecureToken(32);
     }
 
     private static string GenerateSecureToken(int length)

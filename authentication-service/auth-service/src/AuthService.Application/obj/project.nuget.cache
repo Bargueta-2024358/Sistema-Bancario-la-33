@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bOxwsT4rYsw=",
+  "dgSpecHash": "+x8l+/ukNvc=",
   "success": true,
-  "projectFilePath": "/Users/frank/Downloads/Sistema-Bancario-la-33-main-clean/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/AuthService.Application.csproj",
+  "projectFilePath": "/Users/frank/Downloads/Sistema-Bancario-la-33-main/authentication-service/auth-service/src/AuthService.Application/AuthService.Application.csproj",
   "expectedPackageFiles": [
     "/Users/frank/.nuget/packages/bouncycastle.cryptography/2.5.1/bouncycastle.cryptography.2.5.1.nupkg.sha512",
     "/Users/frank/.nuget/packages/cloudinarydotnet/1.27.7/cloudinarydotnet.1.27.7.nupkg.sha512",

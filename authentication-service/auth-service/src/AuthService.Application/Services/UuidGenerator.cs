@@ -5,7 +5,6 @@ namespace AuthService.Application.Services;
 
 public static class UuidGenerator
 {
-    // Caracteres seguros (sin 0, O, I, l para evitar confusión)
     private static readonly string Alphabet = "123456789ABCDEFGHJKMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz";
 
     public static string GenerateShortUUID()
@@ -38,11 +37,10 @@ public static class UuidGenerator
         if (string.IsNullOrEmpty(id))
             return false;
 
-        // Debe empezar con usr_ y tener 16 caracteres en total (usr_ + 12 caracteres)
         if (id.Length != 16 || !id.StartsWith("usr_"))
             return false;
 
-        var idPart = id[4..]; // Obtener solo la parte después de "usr_"
+        var idPart = id[4..];
         return idPart.All(c => Alphabet.Contains(c));
     }
 }

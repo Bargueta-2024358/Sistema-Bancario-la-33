@@ -12,7 +12,6 @@ public class FileDataModelBinder : IModelBinder
     {
         ArgumentNullException.ThrowIfNull(bindingContext);
 
-        // Verificar si el tipo de destino implementa IFileData
         if (!typeof(IFileData).IsAssignableFrom(bindingContext.ModelType))
         {
             return Task.CompletedTask;
@@ -20,7 +19,6 @@ public class FileDataModelBinder : IModelBinder
 
         var request = bindingContext.HttpContext.Request;
 
-        // Buscar el archivo en la request
         var file = request.Form.Files.GetFile(bindingContext.FieldName);
 
         if (file != null && file.Length > 0)
@@ -30,7 +28,6 @@ public class FileDataModelBinder : IModelBinder
         }
         else
         {
-            // No hay archivo, establecer como null
             bindingContext.Result = ModelBindingResult.Success(null);
         }
 

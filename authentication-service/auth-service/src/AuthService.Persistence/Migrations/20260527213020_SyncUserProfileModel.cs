@@ -4,10 +4,8 @@
 
 namespace AuthService.Persistence.Migrations
 {
-    /// <inheritdoc />
     public partial class SyncUserProfileModel : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
@@ -36,7 +34,6 @@ namespace AuthService.Persistence.Migrations
                 onDelete: ReferentialAction.Cascade);
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(

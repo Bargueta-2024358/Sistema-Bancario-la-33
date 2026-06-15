@@ -17,10 +17,8 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        //Aplicar snake_case a tablas y columnas
         foreach (var entity in modelBuilder.Model.GetEntityTypes())
         {
-            //tablas snake_case
             var tableName = entity.GetTableName();
             if (!string.IsNullOrEmpty(tableName))
             {
@@ -29,7 +27,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
             foreach (var property in entity.GetProperties())
             {
-                //columnas snake_case
                 var columName = property.GetColumnName();
                 if (!string.IsNullOrEmpty(columName))
                 {
@@ -39,7 +36,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 
             foreach (var key in entity.GetKeys())
             {
-                //foreign keys snake_case
                 var keyName = key.GetName();
                 if (!string.IsNullOrEmpty(keyName))
                 {
@@ -47,7 +43,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 }
             }
 
-            //indexes snake_case
             foreach (var index in entity.GetIndexes())
             {
                 var indexName = index.GetDatabaseName();
@@ -84,12 +79,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             entity.Property(e => e.UpdatedAt)
               .IsRequired();
 
-            // Configuración de User
-            //Indices para optimización de busqueda
             entity.HasIndex(e => e.UserName).IsUnique();
             entity.HasIndex(e => e.Email).IsUnique();
 
-            //Relaciones
             entity.HasOne(e => e.UserProfile)
                 .WithOne(p => p.User)
                 .HasForeignKey<UserProfile>(p => p.UserId);
@@ -103,7 +95,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 .WithOne(upr => upr.User)
                 .HasForeignKey<UserPasswordReset>(upr => upr.UserId);
 
-            // Configuración de UserProfile
             modelBuilder.Entity<UserProfile>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -120,7 +111,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 entity.Property(e => e.Income).HasColumnType("decimal(18,2)").HasDefaultValue(0m);
             });
 
-            // Configuración de Role
             modelBuilder.Entity<Role>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -134,7 +124,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                     .IsRequired();
             });
 
-            // Configuración de UserRole
             modelBuilder.Entity<UserRole>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -157,7 +146,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                     .HasForeignKey(ur => ur.RoleId);
             });
 
-            // Configuración de UserEmail
             modelBuilder.Entity<UserEmail>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -170,7 +158,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
                 entity.Property(e => e.EmailVerificationToken).HasMaxLength(256);
             });
 
-            // Configuración de UserPasswordReset
             modelBuilder.Entity<UserPasswordReset>(entity =>
             {
                 entity.HasKey(e => e.Id);

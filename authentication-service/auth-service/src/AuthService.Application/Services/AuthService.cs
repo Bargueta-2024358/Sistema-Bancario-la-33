@@ -33,14 +33,12 @@ public class AuthService(
         registerDto.Phone = registerDto.Phone?.Trim() ?? string.Empty;
         registerDto.Dpi = registerDto.Dpi?.Trim();
 
-        // Verificar si el email ya existe
         if (await userRepository.ExistsByEmailAsync(registerDto.Email))
         {
             logger.LogRegistrationWithExistingEmail();
             throw new BusinessException(ErrorCodes.EMAIL_ALREADY_EXISTS, "Email already exists");
         }
 
-        // Verificar si el username ya existe
         if (await userRepository.ExistsByUsernameAsync(registerDto.Username))
         {
             logger.LogRegistrationWithExistingUsername();
@@ -62,7 +60,6 @@ public class AuthService(
             throw new BusinessException(ErrorCodes.FULLNAME_ALREADY_EXISTS, "A user with the same name and surname already exists");
         }
 
-        // Validar y manejar la imagen de perfil
         string profilePicturePath;
 
         if (registerDto.ProfilePicture != null && registerDto.ProfilePicture.Size > 0)
@@ -90,7 +87,6 @@ public class AuthService(
             profilePicturePath = _cloudinaryService.GetDefaultAvatarUrl();
         }
 
-        // Crear nuevo usuario y entidades relacionadas
         var emailVerificationToken = TokenGenerator.GenerateEmailVerificationToken();
 
         var userId = UuidGenerator.GenerateUserId();
@@ -152,7 +148,6 @@ public class AuthService(
             }
         };
 
-        // Guardar usuario y entidades relacionadas
         var createdUser = await userRepository.CreateUserAsync(user);
 
         logger.LogUserRegistered(createdUser.UserName);
@@ -186,35 +181,29 @@ public class AuthService(
 
     public async Task<AuthResponseDto> LoginAsync(LoginDto loginDto)
     {
-        // Buscar usuario por email o username
         User? user = null;
 
         if (loginDto.EmailOrUsername.Contains('@'))
         {
-            // Es un email
             user = await userRepository.GetByEmailAsync(loginDto.EmailOrUsername.ToLowerInvariant());
         }
         else
         {
-            // Es un username
             user = await userRepository.GetByUsernameAsync(loginDto.EmailOrUsername);
         }
 
-        // Verificar si el usuario existe
         if (user == null)
         {
             logger.LogFailedLoginAttempt();
             throw new UnauthorizedAccessException("Invalid credentials");
         }
 
-        // Verificar si el usuario está activo
         if (!user.Status)
         {
             logger.LogFailedLoginAttempt();
             throw new UnauthorizedAccessException("User account is disabled");
         }
 
-        // Verificar contraseña
         if (!passwordHashService.VerifyPassword(loginDto.Password, user.Password))
         {
             logger.LogFailedLoginAttempt();
@@ -223,11 +212,9 @@ public class AuthService(
 
         logger.LogUserLoggedIn();
 
-        // Generar token JWT
         var token = jwtTokenService.GenerateToken(user);
         var expiryMinutes = int.Parse(configuration["JwtSettings:ExpiryInMinutes"] ?? "30");
 
-        // Crear respuesta compacta
         return new AuthResponseDto
         {
             Success = true,
@@ -337,7 +324,6 @@ public class AuthService(
 
         await userRepository.UpdateUserAsync(user);
 
-        // Enviar email de bienvenida
         try
         {
             await emailService.SendWelcomeEmailAsync(user.Email, user.UserName);
@@ -384,14 +370,12 @@ public class AuthService(
             };
         }
 
-        // Generar nuevo token
         var newToken = TokenGenerator.GenerateEmailVerificationToken();
         user.UserEmail.EmailVerificationToken = newToken;
         user.UserEmail.EmailVerificationTokenExpiry = DateTime.UtcNow.AddHours(24);
 
         await userRepository.UpdateUserAsync(user);
 
-        // Enviar email
         try
         {
             await emailService.SendEmailVerificationAsync(user.Email, user.UserName, newToken);
@@ -419,7 +403,6 @@ public class AuthService(
         var user = await userRepository.GetByEmailAsync(forgotPasswordDto.Email);
         if (user == null)
         {
-            // Por seguridad, siempre devolvemos éxito aunque el usuario no exista
             return new EmailResponseDto
             {
                 Success = true,
@@ -428,7 +411,6 @@ public class AuthService(
             };
         }
 
-        // Generar token de reset
         var resetToken = TokenGenerator.GeneratePasswordResetToken();
 
         if (user.UserPasswordReset == null)
@@ -443,12 +425,11 @@ public class AuthService(
         else
         {
             user.UserPasswordReset.PasswordResetToken = resetToken;
-            user.UserPasswordReset.PasswordResetTokenExpiry = DateTime.UtcNow.AddHours(1); // 1 hora para resetear
+            user.UserPasswordReset.PasswordResetTokenExpiry = DateTime.UtcNow.AddHours(1);
         }
 
         await userRepository.UpdateUserAsync(user);
 
-        // Enviar email
         try
         {
             await emailService.SendPasswordResetAsync(user.Email, user.UserName, resetToken);
@@ -482,7 +463,6 @@ public class AuthService(
             };
         }
 
-        // Actualizar contraseña
         user.Password = passwordHashService.HashPassword(resetPasswordDto.NewPassword);
         user.UserPasswordReset.PasswordResetToken = null;
         user.UserPasswordReset.PasswordResetTokenExpiry = null;

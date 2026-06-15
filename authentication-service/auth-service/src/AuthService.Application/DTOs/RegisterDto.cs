@@ -42,9 +42,7 @@ public class RegisterDto
 
     public IFileData? ProfilePicture { get; set; }
 
-    /// <summary>ADMIN_ROLE o USER_ROLE (solo creación por administrador).</summary>
     public string? Role { get; set; }
 
-    /// <summary>Activa la cuenta al crearla (panel admin, sin verificación por email).</summary>
     public bool ActivateImmediately { get; set; }
 }

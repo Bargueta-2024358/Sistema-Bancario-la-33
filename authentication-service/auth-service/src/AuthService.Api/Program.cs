@@ -10,40 +10,32 @@ using Microsoft.AspNetCore.Hosting.Server.Features;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Permite conexiones TLS en entornos locales con certificados no confiables.
 System.Net.ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
 
-// Configure Serilog from appsettings.json only (avoid duplicate sinks)
 builder.Host.UseSerilog((context, services, loggerConfiguration) =>
     loggerConfiguration
         .ReadFrom.Configuration(context.Configuration)
         .ReadFrom.Services(services));
 
-// Registro de servicios.
 builder.Services.AddControllers(options =>
 {
-    // Soporte para enlaces de archivos en formularios multipart.
     options.ModelBinderProviders.Insert(0, new FileDataModelBinderProvider());
 })
 .AddJsonOptions(o =>
 {
-    // Salida JSON en camelCase para consistencia entre servicios.
     o.JsonSerializerOptions.PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase;
 });
 
-// Extensiones de configuración del proyecto.
 builder.Services.AddApiDocumentation();
 builder.Services.AddApplicationServices(builder.Configuration);
 builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddRateLimitingPolicies();
 
-// Configuración de seguridad.
 builder.Services.AddSecurityPolicies(builder.Configuration);
 builder.Services.AddSecurityOptions();
 
 var app = builder.Build();
 
-// Pipeline HTTP.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger(c =>
@@ -58,10 +50,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-// Logging de requests.
 app.UseSerilogRequestLogging();
 
-// Encabezados de seguridad.
 app.UseSecurityHeaders(policies => policies
     .AddDefaultSecurityHeaders()
     .RemoveServerHeader()
@@ -85,10 +75,8 @@ app.UseSecurityHeaders(policies => policies
     .AddCustomHeader("Cache-Control", "no-store, no-cache, must-revalidate, private")
 );
 
-// Manejo global de excepciones.
 app.UseMiddleware<GlobalExceptionMiddleware>();
 
-// Middlewares principales.
 app.UseHttpsRedirection();
 app.UseCors("DefaultCorsPolicy");
 app.UseRateLimiter();
@@ -97,7 +85,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// Endpoints de salud.
 app.MapHealthChecks("/health");
 
 app.MapGet("/health", () =>
@@ -112,7 +99,6 @@ app.MapGet("/health", () =>
 
 app.MapHealthChecks("/api/v1/health");
 
-// Log de inicio con direcciones de escucha.
 var startupLogger = app.Services.GetRequiredService<ILogger<Program>>();
 app.Lifetime.ApplicationStarted.Register(() =>
 {
@@ -141,7 +127,6 @@ app.Lifetime.ApplicationStarted.Register(() =>
     }
 });
 
-// Inicialización de base de datos y datos semilla.
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();

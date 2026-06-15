@@ -30,7 +30,6 @@ public static class AuthenticationExtensions
         })
         .AddJwtBearer(options =>
         {
-            // Evita que "role" se renombre al URI largo y deje de coincidir con RoleClaimType / Node.
             options.MapInboundClaims = false;
 
             options.TokenValidationParameters = new TokenValidationParameters

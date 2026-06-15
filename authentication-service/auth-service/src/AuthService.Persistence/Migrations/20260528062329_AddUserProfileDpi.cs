@@ -4,10 +4,8 @@
 
 namespace AuthService.Persistence.Migrations
 {
-    /// <inheritdoc />
     public partial class AddUserProfileDpi : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<string>(
@@ -19,7 +17,6 @@ namespace AuthService.Persistence.Migrations
                 defaultValue: "");
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(

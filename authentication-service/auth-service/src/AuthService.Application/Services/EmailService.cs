@@ -44,7 +44,6 @@ public class EmailService(IConfiguration configuration, ILogger<EmailService> lo
 
         try
         {
-            // Verificar si el email está habilitado
             var enabled = bool.Parse(smtpSettings["Enabled"] ?? "true");
             if (!enabled)
             {
@@ -52,7 +51,6 @@ public class EmailService(IConfiguration configuration, ILogger<EmailService> lo
                 return;
             }
 
-            // Validar configuración
             var host = smtpSettings["Host"];
             var portString = smtpSettings["Port"];
             var username = smtpSettings["Username"];
@@ -66,7 +64,6 @@ public class EmailService(IConfiguration configuration, ILogger<EmailService> lo
                 throw new InvalidOperationException("La configuración SMTP no está configurada correctamente");
             }
 
-            // Avoid logging sensitive SMTP details
 
             var port = int.Parse(portString ?? "587");
 
@@ -89,13 +86,11 @@ public class EmailService(IConfiguration configuration, ILogger<EmailService> lo
                 ? new SmtpClient(protocolLogger)
                 : new SmtpClient();
 
-            // Configurar timeout
             var timeoutMs = int.Parse(smtpSettings["Timeout"] ?? "30000");
             client.Timeout = timeoutMs;
 
             try
             {
-                // Configurar validación de certificados SSL
                 var ignoreCertErrors = bool.Parse(smtpSettings["IgnoreCertificateErrors"] ?? "false");
                 if (ignoreCertErrors)
                 {
@@ -103,10 +98,8 @@ public class EmailService(IConfiguration configuration, ILogger<EmailService> lo
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                 }
                 
-                // Verificar configuración de SSL implícito
                 var useImplicitSsl = bool.Parse(smtpSettings["UseImplicitSsl"] ?? "false");
 
-                // Configuración específica por puerto y SSL
                 if (useImplicitSsl || port == 465)
                 {
                     await client.ConnectAsync(host, port, SecureSocketOptions.SslOnConnect);
@@ -120,17 +113,14 @@ public class EmailService(IConfiguration configuration, ILogger<EmailService> lo
                     await client.ConnectAsync(host, port, SecureSocketOptions.Auto);
                 }
 
-                // Autenticación
                 await client.AuthenticateAsync(username, password);
 
-                // Crear mensaje con MimeKit
                 var message = new MimeMessage();
                 message.From.Add(new MailboxAddress(fromName, fromEmail));
                 message.To.Add(new MailboxAddress("", to));
                 message.Subject = subject;
                 message.Body = new TextPart("html") { Text = body };
 
-                // Enviar
                 await client.SendAsync(message);
                 logger.LogInformation("Email enviado exitosamente");
 
@@ -153,12 +143,11 @@ public class EmailService(IConfiguration configuration, ILogger<EmailService> lo
         {
             logger.LogError(ex, "Error al enviar el email");
 
-            // Verificar si usar fallback
             var useFallback = bool.Parse(smtpSettings["UseFallback"] ?? "false");
             if (useFallback)
             {
                 logger.LogWarning("Usando respaldo de email");
-                return; // No fallar, solo logear
+                return;
             }
 
             throw new InvalidOperationException($"Error al enviar el email: {ex.Message}", ex);
