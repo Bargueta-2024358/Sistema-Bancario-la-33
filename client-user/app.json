@@ -1,0 +1,30 @@
+{
+  "expo": {
+    "name": "Banco la 33",
+    "slug": "client-user",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo_banco.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/logo_banco.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#e7dbcb"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.bancola33.clientuser"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/logo_banco.png",
+        "backgroundColor": "#e7dbcb"
+      },
+      "package": "com.bancola33.clientuser"
+    },
+    "web": {
+      "favicon": "./assets/logo_banco.png"
+    }
+  }
+}
