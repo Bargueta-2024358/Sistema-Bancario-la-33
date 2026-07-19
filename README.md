@@ -65,13 +65,19 @@ El sistema está dividido en estos servicios:
 
 ## 4) Variables de entorno y configuración
 
-Cada servicio tiene su archivo local (`.env` o `appsettings.json`).
+Cada servicio incluye un archivo de ejemplo. Copia y ajusta antes de arrancar:
+
+- Node/React: `cp .env.example .env` en cada carpeta del servicio
+- Auth (.NET): usa `appsettings.example.json` como referencia para `appsettings.json`
+
+**Importante:** `node_modules`, `bin/`, `obj/` y `.env` no se versionan. Tras clonar el repo debes instalar dependencias en cada servicio.
 
 ### Claves mínimas a revisar
 
-- JWT: `SECRET`, `ISSUER`, `AUDIENCE`
+- JWT: `JWT_SECRET` / `JwtSettings:SecretKey`, `ISSUER`, `AUDIENCE` (iguales en todos)
+- `INTERNAL_SERVICE_KEY` (igual en banking, notifications, report y Auth)
 - Conexión a base de datos (Mongo/PostgreSQL)
-- URL de servicios internos (`report`, `notifications`)
+- URL de servicios internos (`report`, `notifications`, `products`)
 - SMTP (notifications/auth)
 - Cloudinary (auth)
 
@@ -95,6 +101,7 @@ dotnet run --project src/AuthService.Api/AuthService.Api.csproj
 
 ```bash
 cd products-service
+cp .env.example .env
 pnpm install
 pnpm run dev
 ```
@@ -107,18 +114,20 @@ pnpm run dev
 
 ```bash
 cd banking-service
+cp .env.example .env
 pnpm install
 pnpm run dev
 ```
 
-- Puerto esperado: `3021`
-- Base API: `http://localhost:3021/api/accounts`
-- Swagger: `http://localhost:3021/api-docs`
+- Puerto esperado: `3024`
+- Base API: `http://localhost:3024/api/accounts`
+- Swagger: `http://localhost:3024/api-docs`
 
 ### 5.4 Notifications Service
 
 ```bash
 cd notifications-service
+cp .env.example .env
 pnpm install
 pnpm run dev
 ```
@@ -131,6 +140,7 @@ pnpm run dev
 
 ```bash
 cd report-service
+cp .env.example .env
 pnpm install
 pnpm run dev
 ```
@@ -143,6 +153,7 @@ pnpm run dev
 
 ```bash
 cd client-admin
+cp .env.example .env
 pnpm install
 pnpm run dev
 ```
